@@ -1,0 +1,1 @@
+const gretting = 'hello';
