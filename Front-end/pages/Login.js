@@ -1,33 +1,34 @@
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
 import ProfileCard from '../components/profileCard';
+import bgImage from '../assets/img/bg40.jpg';
 
 export default function Login({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text style={styles.appName}>What's that?!</Text>
-      <Text style={styles.header}>Who is ready to play?</Text>
-      <View style={styles.profileContainer}>
-        <ProfileCard />
-        <ProfileCard />
-        <ProfileCard />
+    <ImageBackground source={bgImage} style={{ width: '100%', height: '100%' }}>
+      <View style={styles.container}>
+        <Text style={styles.appName}>What's that?!</Text>
+        <Text style={styles.header}>Who is ready to play?</Text>
+        <View style={styles.profileContainer}>
+          <ProfileCard />
+          <ProfileCard />
+          <ProfileCard />
+        </View>
+        <Button
+          title="go to Capture"
+          onPress={() => navigation.navigate('Capture')}
+        />{' '}
+        <Button
+          title="go to ProfileAdmin"
+          onPress={() => navigation.navigate('ProfileAdmin')}
+        />
       </View>
-      <Button
-        title="go to Capture"
-        onPress={() => navigation.navigate('Capture')}
-      />{' '}
-      <Button
-        title="go to Register"
-        onPress={() => navigation.navigate('Register')}
-      />
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FEF1E6',
-
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: '4em',
@@ -42,6 +43,6 @@ const styles = StyleSheet.create({
     fontSize: '6rem',
   },
   header: {
-    fontSize: '3rem',
+    fontSize: '4rem',
   },
 });

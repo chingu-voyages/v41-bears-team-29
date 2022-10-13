@@ -1,13 +1,16 @@
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 
-export default function profileCard() {
+export default function editProfileCard() {
   return (
     <View style={styles.container} onPress={() => goToCapute}>
       <Image
         style={styles.profilePhoto}
         source={require('../assets/img/profilePhoto.jpg')}
       ></Image>
-      <Text style={styles.profileName}>Profile name</Text>
+      <View>
+        <Text style={styles.profileName}>Profile name</Text>
+        <Button title="X" />
+      </View>
     </View>
   );
 }
