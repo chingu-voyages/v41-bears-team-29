@@ -1,23 +1,41 @@
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 
-export default function editProfileCard() {
+export default function EditProfileCard({ user, pressHandler }) {
   return (
-    <View style={styles.container} onPress={() => goToCapute}>
-      <Image
-        style={styles.profilePhoto}
-        source={require('../assets/img/profilePhoto.jpg')}
-      ></Image>
-      <View>
-        <Text style={styles.profileName}>Profile name</Text>
-        <Button title="X" />
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
+      <View style={styles.container}>
+        <TouchableOpacity>
+          <Image
+            style={styles.profilePhoto}
+            source={require('../assets/img/profilePhoto.jpg')}
+          ></Image>
+          <View>
+            <Text style={styles.profileName}>{user.name}</Text>
+            <Button onPress={() => pressHandler(user.id)} title="X" />
+          </View>
+        </TouchableOpacity>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: '1em',
   },
   profilePhoto: {
     width: '15em',

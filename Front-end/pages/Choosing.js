@@ -1,23 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
+import bgImage from '../assets/img/bg40.jpg';
 
 export default function Choosing({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Choosing</Text>
-      <Button
-        title="go to Score"
-        onPress={() => navigation.navigate('Score')}
-      />
-    </View>
+    <ImageBackground source={bgImage} style={{ width: '100%', height: '100%' }}>
+      <View style={styles.container}>
+        <Button title="<" onPress={() => navigation.navigate('Capture')} />
+        <View style={styles.photo}>
+          <Text>Choosing</Text>
+        </View>
+        <View style={styles.answerContainer}>
+          <Button title="Wrong answer" />
+          <Button title="Wrong answer" />
+          <Button title="Wrong right" />
+        </View>
+        <Button
+          title="go to Score"
+          onPress={() => navigation.navigate('Score')}
+        />
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: '1em',
+  },
+  photo: {
+    width: '30em',
+    height: '30em',
+    border: 'solid 5px blue',
+  },
+  answerContainer: {
+    flexDirection: 'row',
+    gap: '2em',
   },
 });

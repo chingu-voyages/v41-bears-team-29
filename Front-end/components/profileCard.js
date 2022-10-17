@@ -1,13 +1,23 @@
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 
-export default function profileCard() {
+export default function ProfileCard({ user }) {
+  console.log(user);
   return (
     <View style={styles.container} onPress={() => goToCapute}>
-      <Image
-        style={styles.profilePhoto}
-        source={require('../assets/img/profilePhoto.jpg')}
-      ></Image>
-      <Text style={styles.profileName}>Profile name</Text>
+      <TouchableOpacity>
+        <Image
+          style={styles.profilePhoto}
+          source={require('../assets/img/profilePhoto.jpg')}
+        ></Image>
+        <Text style={styles.profileName}>{user?.name}</Text>
+      </TouchableOpacity>
     </View>
   );
 }

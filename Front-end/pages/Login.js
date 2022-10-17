@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, Button, ImageBackground } from 'react-native';
 import ProfileCard from '../components/profileCard';
 import bgImage from '../assets/img/bg40.jpg';
+import { globalStyles } from '../styles/global';
 
 export default function Login({ navigation }) {
   return (
     <ImageBackground source={bgImage} style={{ width: '100%', height: '100%' }}>
       <View style={styles.container}>
-        <Text style={styles.appName}>What's that?!</Text>
-        <Text style={styles.header}>Who is ready to play?</Text>
+        <Text style={globalStyles.appName}>What's that?!</Text>
+        <Text style={globalStyles.headerTitle}>Who is ready to play?</Text>
         <View style={styles.profileContainer}>
           <ProfileCard />
           <ProfileCard />
@@ -39,10 +40,10 @@ const styles = StyleSheet.create({
     padding: '2em',
     border: 'solid 3px blue',
   },
+  headerTitle: {
+    fontSize: '4rem',
+  },
   appName: {
     fontSize: '6rem',
-  },
-  header: {
-    fontSize: '4rem',
   },
 });
