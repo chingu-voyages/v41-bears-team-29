@@ -8,21 +8,23 @@ import Login from "./pages/Login";
 import ProfileAdmin from "./pages/ProfileAdmin";
 import Register from "./pages/Register";
 import Score from "./pages/Score";
-
+import { AuthProvider } from "./context/auth";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      {/* Change initialRouteName to your current working page */}
-      <Stack.Navigator initialRouteName="ProfileAdmin">
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Capture" component={Capture} />
-        <Stack.Screen name="Choosing" component={Choosing} />
-        <Stack.Screen name="Score" component={Score} />
-        <Stack.Screen name="ProfileAdmin" component={ProfileAdmin} />
-      </Stack.Navigator>
+      <AuthProvider>
+        {/* Change initialRouteName to your current working page */}
+        <Stack.Navigator initialRouteName="ProfileAdmin">
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="Capture" component={Capture} />
+          <Stack.Screen name="Choosing" component={Choosing} />
+          <Stack.Screen name="Score" component={Score} />
+          <Stack.Screen name="ProfileAdmin" component={ProfileAdmin} />
+        </Stack.Navigator>
+      </AuthProvider>
     </NavigationContainer>
   );
 }

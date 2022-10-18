@@ -11,11 +11,15 @@ import {
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import ProfileCard from "../components/profileCard";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ScoreCard from "../components/scoreCard";
 import GoBackBtn from "../components/goBackbtn";
+import { AuthContext } from "../context/auth";
 
 export default function Score({ navigation }) {
+  const { users, setUser, setCurrentUser, currentUser } =
+    useContext(AuthContext);
+
   const [score, setScore] = useState([
     {
       photo: 1,
@@ -46,7 +50,7 @@ export default function Score({ navigation }) {
             <GoBackBtn />
           </TouchableOpacity>
           <View style={globalStyles.proileIcon}>
-            <ProfileCard />
+            <ProfileCard user={currentUser} />
           </View>
           <Text style={globalStyles.headerTitle}>Score</Text>
           <Text style={globalStyles.headerTitle}>25</Text>

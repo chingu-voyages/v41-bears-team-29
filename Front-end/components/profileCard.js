@@ -10,7 +10,7 @@ import {
 export default function ProfileCard({ user }) {
   return (
     <View style={styles.container}>
-      <Image style={styles.profilePhoto} source={user.photo}></Image>
+      <Image style={styles.profilePhoto} source={user?.photo}></Image>
       <Text style={styles.profileName}>{user?.name}</Text>
     </View>
   );

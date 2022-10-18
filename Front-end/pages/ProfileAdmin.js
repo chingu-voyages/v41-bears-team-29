@@ -12,25 +12,15 @@ import {
 import EditProfileCard from "../components/editProfileCard";
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Addprofile from "../components/addProfile";
 import GoBackBtn from "../components/goBackbtn";
 import * as ImagePicker from "expo-image-picker";
+import { AuthContext } from "../context/auth";
 
 export default function ProfileAdmin({ navigation }) {
-  const [users, setUsers] = useState([
-    { name: "Tom", photo: require("../assets/img/profilePhoto.jpg"), id: "1" },
-    {
-      name: "Alise",
-      photo: require("../assets/img/profilePhoto2.jpg"),
-      id: "2",
-    },
-    {
-      name: "Javi",
-      photo: require("../assets/img/profilePhoto3.jpg"),
-      id: "3",
-    },
-  ]);
+  const { users, setUsers } = useContext(AuthContext);
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [newUser, setNewUser] = useState("");
 
@@ -67,7 +57,6 @@ export default function ProfileAdmin({ navigation }) {
         { text: "Understood", onPress: () => console.log("alert closed") },
       ]);
     }
-    changeHandler("");
   };
 
   return (

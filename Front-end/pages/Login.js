@@ -10,27 +10,19 @@ import {
 import ProfileCard from "../components/profileCard";
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import GoBackBtn from "../components/goBackbtn";
+import { AuthContext } from "../context/auth";
 
 export default function Login({ navigation }) {
-  const [users, setUsers] = useState([
-    { name: "Tom", photo: require("../assets/img/profilePhoto.jpg"), id: "1" },
-    {
-      name: "Alise",
-      photo: require("../assets/img/profilePhoto2.jpg"),
-      id: "2",
-    },
-    {
-      name: "Javi",
-      photo: require("../assets/img/profilePhoto3.jpg"),
-      id: "3",
-    },
-  ]);
+  const { users, setCurrentUser } = useContext(AuthContext);
+  console.log(users);
+
   const onPressProfileHandler = (profile) => {
     navigation.navigate("Capture");
     console.log("click", profile);
-    // set CurrentProfile
+
+    setCurrentUser(profile);
   };
 
   return (

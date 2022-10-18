@@ -11,8 +11,11 @@ import bgImage from "../assets/img/bg40.jpg";
 import GoBackBtn from "../components/goBackbtn";
 import ProfileCard from "../components/profileCard";
 import { globalStyles } from "../styles/global";
+import React, { useContext } from "react";
+import { AuthContext } from "../context/auth";
 
 export default function Choosing({ navigation }) {
+  const { currentUser } = useContext(AuthContext);
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
@@ -24,7 +27,7 @@ export default function Choosing({ navigation }) {
             <Text>Choosing</Text>
           </View>
           <View style={globalStyles.proileIcon}>
-            <ProfileCard />
+            <ProfileCard user={currentUser} />
           </View>
         </View>
         <View style={styles.answerContainer}>
