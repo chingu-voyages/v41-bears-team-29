@@ -14,7 +14,8 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Choosing">
+      {/* Change initialRouteName to your current working page */}
+      <Stack.Navigator initialRouteName="Score">
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Capture" component={Capture} />

@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
 import GoBackBtn from "../components/goBackbtn";
+import ProfileCard from "../components/profileCard";
+import { globalStyles } from "../styles/global";
 
 export default function Capture({ navigation }) {
   return (
@@ -20,10 +22,15 @@ export default function Capture({ navigation }) {
         <View style={styles.camera}>
           <Text>Capture</Text>
         </View>
-        <Button
-          title="go to Choosing"
-          onPress={() => navigation.navigate("Choosing")}
-        />
+        <View style={styles.rightColumn}>
+          <View style={globalStyles.proileIcon}>
+            <ProfileCard />
+          </View>
+          <Button
+            title="go to Choosing"
+            onPress={() => navigation.navigate("Choosing")}
+          />
+        </View>
       </View>
     </ImageBackground>
   );
@@ -33,16 +40,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "row",
-    alignItems: "center",
     justifyContent: "center",
     gap: "2em",
+    padding: "4em",
+  },
+  rightColumn: {
+    height: "100%",
+    justifyContent: "space-between",
   },
   camera: {
     border: "solid 5px blue",
-    width: "30em",
-    height: "30em",
-  },
-  backBtn: {
-    backgroundColor: "orange",
+    width: "40em",
+    height: "100%",
   },
 });

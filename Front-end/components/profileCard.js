@@ -9,25 +9,24 @@ import {
 
 export default function ProfileCard({ user }) {
   return (
-    <View style={styles.container} onPress={() => goToCapute}>
-      <TouchableOpacity>
-        <Image
-          style={styles.profilePhoto}
-          source={require("../assets/img/profilePhoto.jpg")}
-        ></Image>
-        <Text style={styles.profileName}>{user?.name}</Text>
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <Image
+        style={styles.profilePhoto}
+        source={require("../assets/img/profilePhoto.jpg")}
+      ></Image>
+      <Text style={styles.profileName}>{user?.name}</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
+    height: "100%",
+    width: "100%",
   },
   profilePhoto: {
-    width: "15em",
-    height: "15em",
+    width: "100%",
+    height: "100%",
     border: "solid 5px #BEAEE2",
     borderRadius: 10,
   },

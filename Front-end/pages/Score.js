@@ -30,7 +30,9 @@ export default function Score({ navigation }) {
           <TouchableOpacity onPress={() => navigation.navigate("Capture")}>
             <GoBackBtn />
           </TouchableOpacity>
-          <ProfileCard />
+          <View style={globalStyles.proileIcon}>
+            <ProfileCard />
+          </View>
           <Text style={globalStyles.headerTitle}>Score</Text>
           <Text style={globalStyles.headerTitle}>25</Text>
         </View>
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    gap: "2em",
+    // justifyContent: "space-between",
   },
 });

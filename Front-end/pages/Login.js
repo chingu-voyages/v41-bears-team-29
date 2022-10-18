@@ -11,7 +11,6 @@ import ProfileCard from "../components/profileCard";
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import React, { useState } from "react";
-import { AntDesign } from "@expo/vector-icons";
 import GoBackBtn from "../components/goBackbtn";
 
 export default function Login({ navigation }) {
@@ -20,23 +19,37 @@ export default function Login({ navigation }) {
     { name: "Alise", id: "2" },
     { name: "Javi", id: "3" },
   ]);
+  const onPressProfileHandler = (profile) => {
+    navigation.navigate("Capture");
+    console.log("click", profile);
+    // set CurrentProfile
+  };
 
   return (
     <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
       <View style={styles.container}>
-        <Text style={globalStyles.appName}>What's that?!</Text>
+        <View style={styles.header}>
+          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+            <GoBackBtn />
+          </TouchableOpacity>
+          <Text style={globalStyles.appName}>What's that?!</Text>
+        </View>
         <Text style={globalStyles.headerTitle}>Who is ready to play?</Text>
-        <View style={styles.profileContainer}>
+        <View style={styles.profiles}>
           <FlatList
             keyExtractor={(user) => user.id}
             horizontal={true}
             data={users}
-            renderItem={({ item }) => <ProfileCard user={item} />}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                style={styles.profileContainer}
+                onPress={() => onPressProfileHandler(item)}
+              >
+                <ProfileCard user={item} />
+              </TouchableOpacity>
+            )}
           />
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <GoBackBtn />
-        </TouchableOpacity>
 
         <Button
           title="go to ProfileAdmin"
@@ -54,10 +67,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: "4em",
   },
-  profileContainer: {
+  profiles: {
     flexDirection: "row",
-    gap: "3em",
-    padding: "2em",
-    border: "solid 3px blue",
+  },
+  profileContainer: {
+    margin: "1em",
+    height: 200,
+    width: 200,
+  },
+  header: {
+    alignItems: "center",
+    flexDirection: "row",
   },
 });

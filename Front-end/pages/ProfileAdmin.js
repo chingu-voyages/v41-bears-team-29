@@ -7,7 +7,6 @@ import {
   ImageBackground,
   FlatList,
   Alert,
-  ScrollView,
   TouchableOpacity,
 } from "react-native";
 import EditProfileCard from "../components/editProfileCard";
@@ -15,7 +14,6 @@ import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import React, { useState } from "react";
 import Addprofile from "../components/addProfile";
-// import { AntDesign } from '@expo/vector-icons';
 import GoBackBtn from "../components/goBackbtn";
 
 export default function ProfileAdmin({ navigation }) {
@@ -48,7 +46,7 @@ export default function ProfileAdmin({ navigation }) {
     <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate("Capture")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <GoBackBtn />
           </TouchableOpacity>
           <Text style={globalStyles.headerTitle}>Profiles</Text>
@@ -90,6 +88,6 @@ const styles = StyleSheet.create({
   },
 
   newPlayer: {
-    // fontSize: '3rem',
+    fontSize: "3rem",
   },
 });

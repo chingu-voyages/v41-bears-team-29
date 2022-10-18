@@ -19,4 +19,9 @@ export const globalStyles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  proileIcon: {
+    height: 100,
+    width: 100,
+    border: "solid red 1px",
+  },
 });
