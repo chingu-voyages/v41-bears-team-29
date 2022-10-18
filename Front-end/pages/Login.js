@@ -68,6 +68,8 @@ const styles = StyleSheet.create({
   },
   profiles: {
     flexDirection: "row",
+    width: "100%",
+    overflow: "hidden",
   },
   profileContainer: {
     margin: "1em",

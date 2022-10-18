@@ -16,7 +16,7 @@ export default function App() {
     <NavigationContainer>
       <AuthProvider>
         {/* Change initialRouteName to your current working page */}
-        <Stack.Navigator initialRouteName="ProfileAdmin">
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Capture" component={Capture} />

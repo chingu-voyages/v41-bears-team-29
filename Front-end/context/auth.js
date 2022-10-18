@@ -16,9 +16,19 @@ const AuthProvider = ({ children }) => {
       id: "2",
     },
     {
-      name: "Javi",
+      name: "Elliot",
       photo: require("../assets/img/profilePhoto3.jpg"),
       id: "3",
+    },
+    {
+      name: "Dany",
+      photo: require("../assets/img/profilePhoto4.jpg"),
+      id: "4",
+    },
+    {
+      name: "Jorge",
+      photo: require("../assets/img/profilePhoto3.jpg"),
+      id: "5",
     },
   ]);
 

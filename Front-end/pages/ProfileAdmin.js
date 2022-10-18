@@ -75,7 +75,7 @@ export default function ProfileAdmin({ navigation }) {
           submitHandle={submitHandle}
           openImagePickerAsync={openImagePickerAsync}
         />
-        <View horizontal={true} style={styles.usersList}>
+        <View style={styles.usersList}>
           <FlatList
             keyExtractor={(user) => user.id}
             horizontal={true}
