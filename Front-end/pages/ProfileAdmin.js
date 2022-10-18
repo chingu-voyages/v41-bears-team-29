@@ -1,29 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
   Button,
   ImageBackground,
-  TextInput,
   FlatList,
-  TouchableOpacity,
   Alert,
   ScrollView,
-} from 'react-native';
-import EditProfileCard from '../components/editProfileCard';
-import bgImage from '../assets/img/bg40.jpg';
-import { globalStyles } from '../styles/global';
-import React, { useState } from 'react';
-import Addprofile from '../components/addProfile';
+} from "react-native";
+import EditProfileCard from "../components/editProfileCard";
+import bgImage from "../assets/img/bg40.jpg";
+import { globalStyles } from "../styles/global";
+import React, { useState } from "react";
+import Addprofile from "../components/addProfile";
+// import { AntDesign } from '@expo/vector-icons';
 
 export default function ProfileAdmin({ navigation }) {
   const [users, setUsers] = useState([
-    { name: 'Tom', id: '1' },
-    { name: 'Alise', id: '2' },
-    { name: 'Javi', id: '3' },
-    { name: 'Alise', id: '4' },
-    { name: 'Alise', id: '5' },
+    { name: "Tom", id: "1" },
+    { name: "Alise", id: "2" },
+    { name: "Javi", id: "3" },
+    // { name: 'Alise', id: '4' },
+    // { name: 'Alise', id: '5' },
   ]);
 
   const pressHandler = (id) => {
@@ -37,17 +36,18 @@ export default function ProfileAdmin({ navigation }) {
         return [{ name: newUser, id: Math.random().toString() }, ...prevUsers];
       });
     } else {
-      Alert.alert('OOPS!', 'New name most be over 3 chars long', [
-        { text: 'Understood', onPress: () => console.log('alert closed') },
+      Alert.alert("OOPS!", "New name most be over 3 chars long", [
+        { text: "Understood", onPress: () => console.log("alert closed") },
       ]);
     }
   };
 
   return (
-    <ImageBackground source={bgImage} style={{ width: '100%', height: '100%' }}>
+    <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <Button title="<" onPress={() => navigation.navigate('Login')} />
+          <Button title="<" onPress={() => navigation.navigate("Login")} />
+          {/* <AntDesign name="back" size={24} color="black" /> */}
           <Text style={globalStyles.headerTitle}>Profiles</Text>
         </View>
         <Text style={styles.newPlayer}>New Player</Text>
@@ -70,23 +70,23 @@ export default function ProfileAdmin({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: '4em',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    padding: "4em",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   headerContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
   },
   usersList: {
-    width: '100%',
-    overflow: 'hidden',
+    width: "100%",
+    overflow: "hidden",
   },
   profilesContainer: {
-    flexDirection: 'row',
-    gap: '2em',
+    flexDirection: "row",
+    gap: "2em",
   },
 
   newPlayer: {
-    fontSize: '3rem',
+    // fontSize: '3rem',
   },
 });

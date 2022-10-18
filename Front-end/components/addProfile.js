@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
-import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import React, { useState } from "react";
 
 export default function Addprofile({ submitHandle }) {
-  const [newUser, setNewUser] = useState('');
+  const [newUser, setNewUser] = useState("");
 
   const changeHandler = (val) => {
     setNewUser(val);
@@ -25,18 +25,18 @@ export default function Addprofile({ submitHandle }) {
 
 const styles = StyleSheet.create({
   addProfile: {
-    flexDirection: 'row',
-    gap: '1em',
-    margin: '1em',
+    flexDirection: "row",
+    gap: "1em",
+    margin: "1em",
   },
   input: {
     borderWidth: 1,
-    borderColor: 'blue',
+    borderColor: "blue",
     padding: 8,
     borderRadius: 10,
-    fontSize: '1rem',
+    // fontSize: '1rem',
   },
   formText: {
-    fontSize: '2rem',
+    // fontSize: '2rem',
   },
 });

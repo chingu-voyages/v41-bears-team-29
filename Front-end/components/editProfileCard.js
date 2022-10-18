@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
-} from 'react-native';
+} from "react-native";
 
 export default function EditProfileCard({ user, pressHandler }) {
   return (
@@ -20,7 +20,7 @@ export default function EditProfileCard({ user, pressHandler }) {
         <TouchableOpacity>
           <Image
             style={styles.profilePhoto}
-            source={require('../assets/img/profilePhoto.jpg')}
+            source={require("../assets/img/profilePhoto.jpg")}
           ></Image>
           <View>
             <Text style={styles.profileName}>{user.name}</Text>
@@ -35,17 +35,17 @@ export default function EditProfileCard({ user, pressHandler }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: '1em',
+    margin: "1em",
   },
   profilePhoto: {
-    width: '15em',
-    height: '15em',
-    border: 'solid 5px #BEAEE2',
+    width: "15em",
+    height: "15em",
+    border: "solid 5px #BEAEE2",
     borderRadius: 10,
   },
   profileName: {
-    textAlign: 'center',
-    paddingTop: '.5em',
-    fontSize: '2rem',
+    textAlign: "center",
+    paddingTop: ".5em",
+    // fontSize: '2rem',
   },
 });
