@@ -43,7 +43,7 @@ export default function ProfileAdmin({ navigation }) {
   };
 
   return (
-    <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
+    <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
           <TouchableOpacity onPress={() => navigation.navigate("Login")}>
@@ -71,7 +71,6 @@ export default function ProfileAdmin({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: "4em",
     alignItems: "center",
     justifyContent: "space-between",
   },

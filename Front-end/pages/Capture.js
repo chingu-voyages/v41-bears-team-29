@@ -14,7 +14,7 @@ import { globalStyles } from "../styles/global";
 
 export default function Capture({ navigation }) {
   return (
-    <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
+    <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <GoBackBtn />
@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     gap: "2em",
-    padding: "4em",
   },
   rightColumn: {
     height: "100%",

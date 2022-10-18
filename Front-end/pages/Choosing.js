@@ -14,7 +14,7 @@ import { globalStyles } from "../styles/global";
 
 export default function Choosing({ navigation }) {
   return (
-    <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
+    <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
         <View style={styles.body}>
           <TouchableOpacity onPress={() => navigation.navigate("Capture")}>
@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
 
     gap: "1em",
-    padding: "4em",
   },
   photo: {
     width: "40em",

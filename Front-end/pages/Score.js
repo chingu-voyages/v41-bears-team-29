@@ -24,7 +24,7 @@ export default function Score({ navigation }) {
   ]);
 
   return (
-    <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
+    <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.navigate("Capture")}>
@@ -56,7 +56,7 @@ export default function Score({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: "4em",
+
     justifyContent: "space-between",
   },
   header: {

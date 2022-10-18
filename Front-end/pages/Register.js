@@ -1,19 +1,23 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, ImageBackground } from "react-native";
 import ProfileAdmin from "./ProfileAdmin";
+import { globalStyles } from "../styles/global";
+import bgImage from "../assets/img/bg40.jpg";
 
 export default function Register({ navigation }) {
   return (
-    <View style={styles.container}>
-      <Text>Wellcome to</Text>
-      <Text>What's that?!</Text>
-      <Text>Please register to start playing with this incredible game</Text>
-      <Button
-        title="Go to your profile"
-        onPress={() => navigation.navigate("ProfileAdmin")}
-      />
-      <StatusBar style="auto" />
-    </View>
+    <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
+      <View style={styles.container}>
+        <Text>Wellcome to</Text>
+        <Text>What's that?!</Text>
+        <Text>Please register to start playing with this incredible game</Text>
+        <Button
+          title="Go to your profile"
+          onPress={() => navigation.navigate("ProfileAdmin")}
+        />
+        <StatusBar style="auto" />
+      </View>
+    </ImageBackground>
   );
 }
 

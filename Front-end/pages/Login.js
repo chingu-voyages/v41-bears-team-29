@@ -26,7 +26,7 @@ export default function Login({ navigation }) {
   };
 
   return (
-    <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
+    <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.navigate("Register")}>
@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-between",
-    padding: "4em",
   },
   profiles: {
     flexDirection: "row",
