@@ -11,7 +11,12 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     padding: "4em",
   },
-  btnContainer: {
-    backgroundColor: "red",
+
+  goBackBtn: {
+    fontSize: "2rem",
+    backgroundColor: "blue",
+    color: "white",
+    padding: 10,
+    borderRadius: 5,
   },
 });

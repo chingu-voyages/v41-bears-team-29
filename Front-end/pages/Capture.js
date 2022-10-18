@@ -1,12 +1,22 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
+import GoBackBtn from "../components/goBackbtn";
 
 export default function Capture({ navigation }) {
   return (
     <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
       <View style={styles.container}>
-        <Button title="<" onPress={() => navigation.navigate("Login")} />
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <GoBackBtn />
+        </TouchableOpacity>
         <View style={styles.camera}>
           <Text>Capture</Text>
         </View>

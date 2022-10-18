@@ -5,11 +5,14 @@ import {
   Button,
   ImageBackground,
   FlatList,
+  TouchableOpacity,
 } from "react-native";
 import ProfileCard from "../components/profileCard";
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import React, { useState } from "react";
+import { AntDesign } from "@expo/vector-icons";
+import GoBackBtn from "../components/goBackbtn";
 
 export default function Login({ navigation }) {
   const [users, setUsers] = useState([
@@ -31,10 +34,10 @@ export default function Login({ navigation }) {
             renderItem={({ item }) => <ProfileCard user={item} />}
           />
         </View>
-        <Button
-          title="go to Capture"
-          onPress={() => navigation.navigate("Capture")}
-        />{" "}
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <GoBackBtn />
+        </TouchableOpacity>
+
         <Button
           title="go to ProfileAdmin"
           onPress={() => navigation.navigate("ProfileAdmin")}

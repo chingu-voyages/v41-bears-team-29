@@ -8,6 +8,7 @@ import {
   FlatList,
   Alert,
   ScrollView,
+  TouchableOpacity,
 } from "react-native";
 import EditProfileCard from "../components/editProfileCard";
 import bgImage from "../assets/img/bg40.jpg";
@@ -15,6 +16,7 @@ import { globalStyles } from "../styles/global";
 import React, { useState } from "react";
 import Addprofile from "../components/addProfile";
 // import { AntDesign } from '@expo/vector-icons';
+import GoBackBtn from "../components/goBackbtn";
 
 export default function ProfileAdmin({ navigation }) {
   const [users, setUsers] = useState([
@@ -46,8 +48,9 @@ export default function ProfileAdmin({ navigation }) {
     <ImageBackground source={bgImage} style={{ width: "100%", height: "100%" }}>
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <Button title="<" onPress={() => navigation.navigate("Login")} />
-          {/* <AntDesign name="back" size={24} color="black" /> */}
+          <TouchableOpacity onPress={() => navigation.navigate("Capture")}>
+            <GoBackBtn />
+          </TouchableOpacity>
           <Text style={globalStyles.headerTitle}>Profiles</Text>
         </View>
         <Text style={styles.newPlayer}>New Player</Text>

@@ -9,7 +9,7 @@ import {
 
 export default function ScoreCard({ item }) {
   const { answer, url } = item;
-  console.log(url);
+
   return (
     <View style={styles.container} onPress={() => goToCapute}>
       <TouchableOpacity>
