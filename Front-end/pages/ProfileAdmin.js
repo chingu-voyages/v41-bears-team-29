@@ -15,31 +15,59 @@ import { globalStyles } from "../styles/global";
 import React, { useState } from "react";
 import Addprofile from "../components/addProfile";
 import GoBackBtn from "../components/goBackbtn";
+import * as ImagePicker from "expo-image-picker";
 
 export default function ProfileAdmin({ navigation }) {
   const [users, setUsers] = useState([
-    { name: "Tom", id: "1" },
-    { name: "Alise", id: "2" },
-    { name: "Javi", id: "3" },
-    // { name: 'Alise', id: '4' },
-    // { name: 'Alise', id: '5' },
+    { name: "Tom", photo: require("../assets/img/profilePhoto.jpg"), id: "1" },
+    {
+      name: "Alise",
+      photo: require("../assets/img/profilePhoto2.jpg"),
+      id: "2",
+    },
+    {
+      name: "Javi",
+      photo: require("../assets/img/profilePhoto3.jpg"),
+      id: "3",
+    },
   ]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [newUser, setNewUser] = useState("");
 
-  const pressHandler = (id) => {
+  let openImagePickerAsync = async () => {
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    if (pickerResult.cancelled === true) {
+      return;
+    }
+    setSelectedImage({ localUri: pickerResult.uri });
+  };
+
+  const deleteUserHandler = (id) => {
     setUsers((prevUsers) => {
       return prevUsers.filter((user) => user.id !== id);
     });
   };
+  const changeHandler = (val) => {
+    setNewUser(val);
+  };
   const submitHandle = (newUser) => {
     if (newUser.length >= 3) {
       setUsers((prevUsers) => {
-        return [{ name: newUser, id: Math.random().toString() }, ...prevUsers];
+        return [
+          {
+            name: newUser,
+            photo: { uri: selectedImage.localUri },
+            id: Math.random().toString(),
+          },
+          ...prevUsers,
+        ];
       });
     } else {
       Alert.alert("OOPS!", "New name most be over 3 chars long", [
         { text: "Understood", onPress: () => console.log("alert closed") },
       ]);
     }
+    changeHandler("");
   };
 
   return (
@@ -52,14 +80,22 @@ export default function ProfileAdmin({ navigation }) {
           <Text style={globalStyles.headerTitle}>Profiles</Text>
         </View>
         <Text style={styles.newPlayer}>New Player</Text>
-        <Addprofile submitHandle={submitHandle} />
+        <Addprofile
+          newUser={newUser}
+          changeHandler={changeHandler}
+          submitHandle={submitHandle}
+          openImagePickerAsync={openImagePickerAsync}
+        />
         <View horizontal={true} style={styles.usersList}>
           <FlatList
             keyExtractor={(user) => user.id}
             horizontal={true}
             data={users}
             renderItem={({ item }) => (
-              <EditProfileCard user={item} pressHandler={pressHandler} />
+              <EditProfileCard
+                user={item}
+                deleteUserHandler={deleteUserHandler}
+              />
             )}
           />
         </View>

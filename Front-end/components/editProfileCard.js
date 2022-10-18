@@ -9,7 +9,8 @@ import {
   Keyboard,
 } from "react-native";
 
-export default function EditProfileCard({ user, pressHandler }) {
+export default function EditProfileCard({ user, deleteUserHandler }) {
+  console.log(user);
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -18,13 +19,10 @@ export default function EditProfileCard({ user, pressHandler }) {
     >
       <View style={styles.container}>
         <TouchableOpacity>
-          <Image
-            style={styles.profilePhoto}
-            source={require("../assets/img/profilePhoto.jpg")}
-          ></Image>
+          <Image style={styles.profilePhoto} source={user.photo}></Image>
           <View>
             <Text style={styles.profileName}>{user.name}</Text>
-            <Button onPress={() => pressHandler(user.id)} title="X" />
+            <Button onPress={() => deleteUserHandler(user.id)} title="X" />
           </View>
         </TouchableOpacity>
       </View>

@@ -15,9 +15,17 @@ import GoBackBtn from "../components/goBackbtn";
 
 export default function Login({ navigation }) {
   const [users, setUsers] = useState([
-    { name: "Tom", id: "1" },
-    { name: "Alise", id: "2" },
-    { name: "Javi", id: "3" },
+    { name: "Tom", photo: require("../assets/img/profilePhoto.jpg"), id: "1" },
+    {
+      name: "Alise",
+      photo: require("../assets/img/profilePhoto2.jpg"),
+      id: "2",
+    },
+    {
+      name: "Javi",
+      photo: require("../assets/img/profilePhoto3.jpg"),
+      id: "3",
+    },
   ]);
   const onPressProfileHandler = (profile) => {
     navigation.navigate("Capture");

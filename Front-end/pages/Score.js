@@ -17,10 +17,25 @@ import GoBackBtn from "../components/goBackbtn";
 
 export default function Score({ navigation }) {
   const [score, setScore] = useState([
-    { photo: 1, answer: "sofa", url: "../assets/img/sofa.jpg", id: 1 },
-    { photo: 2, answer: "table", url: "../assets/img/table.jpg", id: 2 },
-    { photo: 3, answer: "chair", url: "../assets/img/chair.jpg", id: 3 },
-    { photo: 4, answer: "cup", url: "../assets/img/cup.jpg", id: 4 },
+    {
+      photo: 1,
+      answer: "sofa",
+      photo: require("../assets/img/sofa.jpg"),
+      id: 1,
+    },
+    {
+      photo: 2,
+      answer: "table",
+      photo: require("../assets/img/table.jpg"),
+      id: 2,
+    },
+    {
+      photo: 3,
+      answer: "chair",
+      photo: require("../assets/img/chair.jpg"),
+      id: 3,
+    },
+    { photo: 4, answer: "cup", photo: require("../assets/img/cup.jpg"), id: 4 },
   ]);
 
   return (

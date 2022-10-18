@@ -8,15 +8,12 @@ import {
 } from "react-native";
 
 export default function ScoreCard({ item }) {
-  const { answer, url } = item;
+  const { answer, photo } = item;
 
   return (
     <View style={styles.container} onPress={() => goToCapute}>
       <TouchableOpacity>
-        <Image
-          style={styles.image}
-          source={require("../assets/img/sofa.jpg")}
-        ></Image>
+        <Image style={styles.image} source={photo}></Image>
         <Text style={styles.answer}>{answer}</Text>
       </TouchableOpacity>
     </View>

@@ -1,13 +1,12 @@
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import React, { useState } from "react";
 
-export default function Addprofile({ submitHandle }) {
-  const [newUser, setNewUser] = useState("");
-
-  const changeHandler = (val) => {
-    setNewUser(val);
-  };
-
+export default function Addprofile({
+  submitHandle,
+  openImagePickerAsync,
+  changeHandler,
+  newUser,
+}) {
   return (
     <View style={styles.addProfile}>
       <Text style={styles.formText}>Name:</Text>
@@ -15,9 +14,13 @@ export default function Addprofile({ submitHandle }) {
       <Text style={styles.formText}>Photo:</Text>
       <Button
         style={styles.addPhoto}
-        onPress={() => submitHandle(newUser)}
+        onPress={openImagePickerAsync}
         title="+"
-        color="red"
+      />{" "}
+      <Button
+        style={styles.btn}
+        onPress={() => submitHandle(newUser)}
+        title="ADD"
       />
     </View>
   );
@@ -34,9 +37,9 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     padding: 8,
     borderRadius: 10,
-    // fontSize: '1rem',
+    fontSize: "2rem",
   },
   formText: {
-    // fontSize: '2rem',
+    fontSize: "2rem",
   },
 });
