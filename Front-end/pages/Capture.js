@@ -31,7 +31,7 @@ export default function Capture({ navigation }) {
             <ProfileCard user={currentUser} />
           </View>
           <Button
-            title="go to Choosing"
+            title="What is this?"
             onPress={() => navigation.navigate("Choosing")}
           />
         </View>
