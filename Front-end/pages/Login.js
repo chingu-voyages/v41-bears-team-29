@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   },
   profileContainer: {
-    margin: "1em",
+    // margin: "1em",
     height: 200,
     width: 200,
   },

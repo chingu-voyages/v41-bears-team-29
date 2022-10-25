@@ -49,21 +49,21 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
 
-    gap: "1em",
+    // gap: "1em",
   },
   photo: {
-    width: "40em",
-    height: "30em",
+    // width: "40em",
+    // height: "30em",
     border: "solid 5px blue",
   },
   body: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    gap: "2em",
+    // gap: "2em",
   },
   answerContainer: {
     flexDirection: "row",
-    gap: "2em",
+    // gap: "2em",
   },
 });

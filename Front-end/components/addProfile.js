@@ -28,18 +28,18 @@ export default function Addprofile({
 
 const styles = StyleSheet.create({
   addProfile: {
-    flexDirection: "row",
-    gap: "1em",
-    margin: "1em",
+    // flexDirection: "row",
+    // gap: "1em",
+    // margin: "1em",
   },
   input: {
-    borderWidth: 1,
-    borderColor: "blue",
-    padding: 8,
-    borderRadius: 10,
-    fontSize: "2rem",
+    // borderWidth: 1,
+    // borderColor: "blue",
+    // padding: 8,
+    // borderRadius: 10,
+    // fontSize: "2rem",
   },
   formText: {
-    fontSize: "2rem",
+    // fontSize: "2rem",
   },
 });

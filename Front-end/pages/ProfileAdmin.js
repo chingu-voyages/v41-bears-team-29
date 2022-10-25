@@ -108,10 +108,10 @@ const styles = StyleSheet.create({
   },
   profilesContainer: {
     flexDirection: "row",
-    gap: "2em",
+    // gap: "2em",
   },
 
   newPlayer: {
-    fontSize: "3rem",
+    // fontSize: "3rem",
   },
 });

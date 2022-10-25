@@ -45,15 +45,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
-    gap: "2em",
+    // gap: "2em",
   },
   rightColumn: {
     height: "100%",
     justifyContent: "space-between",
   },
   camera: {
-    border: "solid 5px blue",
-    width: "40em",
+    // border: "solid 5px blue",
+    // width: "40em",
     height: "100%",
   },
 });

@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    gap: "2em",
+    // gap: "2em",
     // justifyContent: "space-between",
   },
 });

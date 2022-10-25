@@ -33,17 +33,17 @@ export default function EditProfileCard({ user, deleteUserHandler }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: "1em",
+    // margin: "1em",
   },
   profilePhoto: {
-    width: "15em",
-    height: "15em",
-    border: "solid 5px #BEAEE2",
+    // width: "15em",
+    // height: "15em",
+    // border: "solid 5px #BEAEE2",
     borderRadius: 10,
   },
   profileName: {
     textAlign: "center",
-    paddingTop: ".5em",
+    // paddingTop: ".5em",
     // fontSize: '2rem',
   },
 });
