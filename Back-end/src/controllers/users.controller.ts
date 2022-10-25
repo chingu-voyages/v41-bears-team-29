@@ -109,8 +109,8 @@ export const authenticateUser = async (
         })
       }
     } else {
-      response.status(204).json({
-        status: 'Success',
+      response.status(404).json({
+        status: 'Failed',
         message: 'This email is not used, Sign up instead'
       })
     }

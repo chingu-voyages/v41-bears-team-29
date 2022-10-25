@@ -26,7 +26,7 @@ export default function Choosing({ navigation }) {
           <View style={styles.photo}>
             <Text>Choosing</Text>
           </View>
-          <View style={globalStyles.proileIcon}>
+          <View style={globalStyles.profileIcon}>
             <ProfileCard user={currentUser} />
           </View>
         </View>
@@ -48,22 +48,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-
-    gap: "1em",
   },
   photo: {
-    width: "40em",
-    height: "30em",
-    border: "solid 5px blue",
+    width: "40%",
+    height: "30%",
+    borderStyle: 'solid',
+    borderWidth: 5,
+    borderColor: 'blue',
   },
   body: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    gap: "2em",
   },
   answerContainer: {
     flexDirection: "row",
-    gap: "2em",
   },
 });

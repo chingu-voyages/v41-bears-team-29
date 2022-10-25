@@ -8,7 +8,7 @@ export default function Register({ navigation }) {
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
-        <Text>Wellcome to</Text>
+        <Text>Welcome to</Text>
         <Text>What's that?!</Text>
         <Text>Please register to start playing with this incredible game</Text>
         <Button
