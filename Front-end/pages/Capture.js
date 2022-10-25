@@ -27,7 +27,7 @@ export default function Capture({ navigation }) {
           <Text>Capture</Text>
         </View>
         <View style={styles.rightColumn}>
-          <View style={globalStyles.proileIcon}>
+          <View style={globalStyles.profileIcon}>
             <ProfileCard user={currentUser} />
           </View>
           <Button
@@ -45,15 +45,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "center",
-    gap: "2em",
   },
   rightColumn: {
     height: "100%",
     justifyContent: "space-between",
   },
   camera: {
-    border: "solid 5px blue",
-    width: "40em",
+    borderWidth: 5,
+    borderColor:'blue',
+    borderStyle: 'solid',
+    width: "40%",
     height: "100%",
   },
 });
