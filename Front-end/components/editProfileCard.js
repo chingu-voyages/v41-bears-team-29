@@ -10,7 +10,6 @@ import {
 } from "react-native";
 
 export default function EditProfileCard({ user, deleteUserHandler }) {
-  console.log(user);
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -33,17 +32,17 @@ export default function EditProfileCard({ user, deleteUserHandler }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: "1em",
+    margin: 5,
   },
   profilePhoto: {
-    width: "15em",
-    height: "15em",
-    border: "solid 5px #BEAEE2",
+    width: 90,
+    height: 90,
+
     borderRadius: 10,
   },
   profileName: {
     textAlign: "center",
-    paddingTop: ".5em",
-    // fontSize: '2rem',
+    paddingTop: 5,
+    fontSize: 10,
   },
 });

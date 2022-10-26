@@ -4,18 +4,18 @@ import { StyleSheet } from "react-native";
 
 export const globalStyles = StyleSheet.create({
   headerTitle: {
-    fontSize: "4rem",
+    fontSize: 40,
   },
   appName: {
-    fontSize: "6rem",
+    fontSize: 80,
   },
   pageContainer: {
     flex: 1,
-    padding: "4em",
+    padding: 20,
   },
 
   goBackBtn: {
-    fontSize: "2rem",
+    fontSize: 20,
     backgroundColor: "blue",
     color: "white",
     padding: 10,
@@ -24,12 +24,11 @@ export const globalStyles = StyleSheet.create({
   proileIcon: {
     height: 100,
     width: 100,
-    border: "solid red 1px",
+    // border: "solid red 1px",
   },
   bgContainer: {
     flex: 1,
     width: "100%",
     height: "100%",
-    padding: "4em",
   },
 });

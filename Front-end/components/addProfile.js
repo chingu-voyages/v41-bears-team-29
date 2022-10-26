@@ -16,7 +16,7 @@ export default function Addprofile({
         style={styles.addPhoto}
         onPress={openImagePickerAsync}
         title="+"
-      />{" "}
+      />
       <Button
         style={styles.btn}
         onPress={() => submitHandle(newUser)}
@@ -28,18 +28,23 @@ export default function Addprofile({
 
 const styles = StyleSheet.create({
   addProfile: {
+    alignContent: "center",
     flexDirection: "row",
-    gap: "1em",
-    margin: "1em",
+    justifyContent: "space-between",
+    alignItems: "center",
+    width: "50%",
+    borderColor: "blue",
+    borderWidth: 2,
   },
   input: {
     borderWidth: 1,
     borderColor: "blue",
     padding: 8,
     borderRadius: 10,
-    fontSize: "2rem",
+    fontSize: 10,
+    width: 200,
   },
   formText: {
-    fontSize: "2rem",
+    fontSize: 25,
   },
 });

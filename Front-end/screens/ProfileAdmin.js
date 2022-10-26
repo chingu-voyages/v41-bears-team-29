@@ -96,6 +96,7 @@ export default function ProfileAdmin({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
     alignItems: "center",
     justifyContent: "space-between",
   },
@@ -104,14 +105,16 @@ const styles = StyleSheet.create({
   },
   usersList: {
     width: "100%",
+    borderWidth: 3,
+    borderColor: "red",
     overflow: "hidden",
+    alignItems: "center",
   },
   profilesContainer: {
     flexDirection: "row",
-    gap: "2em",
   },
 
   newPlayer: {
-    fontSize: "3rem",
+    fontSize: 24,
   },
 });

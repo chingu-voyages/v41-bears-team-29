@@ -16,7 +16,6 @@ import { AuthContext } from "../context/auth";
 
 export default function Login({ navigation }) {
   const { users, setCurrentUser } = useContext(AuthContext);
-  console.log(users);
 
   const onPressProfileHandler = (profile) => {
     navigation.navigate("Capture");
@@ -63,16 +62,17 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
     alignItems: "center",
     justifyContent: "space-between",
   },
   profiles: {
     flexDirection: "row",
-    width: "100%",
+    // width: "100%",
     overflow: "hidden",
   },
   profileContainer: {
-    margin: "1em",
+    margin: 10,
     height: 200,
     width: 200,
   },

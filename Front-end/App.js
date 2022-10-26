@@ -2,13 +2,14 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Capture from "./pages/Capture";
-import Choosing from "./pages/Choosing";
-import Login from "./pages/Login";
-import ProfileAdmin from "./pages/ProfileAdmin";
-import Register from "./pages/Register";
-import Score from "./pages/Score";
+import Capture from "./screens/Capture";
+import Choosing from "./screens/Choosing";
+import Login from "./screens/Login";
+import ProfileAdmin from "./screens/ProfileAdmin";
+import Register from "./screens/Register";
+import Score from "./screens/Score";
 import { AuthProvider } from "./context/auth";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -28,12 +29,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

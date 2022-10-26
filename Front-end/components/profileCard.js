@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
   profilePhoto: {
     width: "100%",
     height: "100%",
-    border: "solid 5px #BEAEE2",
+    // border: "solid 5px #BEAEE2",
     borderRadius: 10,
   },
   profileName: {
     textAlign: "center",
-    paddingTop: ".5em",
-    // fontSize: '2rem',
+    paddingTop: 5,
+    fontSize: 10,
   },
 });

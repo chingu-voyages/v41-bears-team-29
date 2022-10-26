@@ -9,7 +9,12 @@ const AuthProvider = ({ children }) => {
     id: "",
   });
   const [users, setUsers] = useState([
-    { name: "Tom", photo: require("../assets/img/profilePhoto.jpg"), id: "1" },
+    {
+      name: "Tom",
+      photo: require("../assets/img/profilePhoto.jpg"),
+      id: "1",
+      score: [{}],
+    },
     {
       name: "Alise",
       photo: require("../assets/img/profilePhoto2.jpg"),
@@ -31,10 +36,10 @@ const AuthProvider = ({ children }) => {
       id: "5",
     },
   ]);
-
+  const [photo, setPhoto] = useState();
   return (
     <AuthContext.Provider
-      value={{ currentUser, setCurrentUser, users, setUsers }}
+      value={{ currentUser, setCurrentUser, users, setUsers, photo, setPhoto }}
     >
       {children}
     </AuthContext.Provider>

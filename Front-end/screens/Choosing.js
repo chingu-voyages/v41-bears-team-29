@@ -6,6 +6,8 @@ import {
   Button,
   ImageBackground,
   TouchableOpacity,
+  SafeAreaView,
+  Image,
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
 import GoBackBtn from "../components/goBackbtn";
@@ -15,7 +17,8 @@ import React, { useContext } from "react";
 import { AuthContext } from "../context/auth";
 
 export default function Choosing({ navigation }) {
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, photo } = useContext(AuthContext);
+
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
@@ -23,9 +26,9 @@ export default function Choosing({ navigation }) {
           <TouchableOpacity onPress={() => navigation.navigate("Capture")}>
             <GoBackBtn />
           </TouchableOpacity>
-          <View style={styles.photo}>
-            <Text>Choosing</Text>
-          </View>
+          <SafeAreaView style={styles.photoContainer}>
+            <Image source={{ uri: "data:image/jpg;base64," + photo }} />
+          </SafeAreaView>
           <View style={globalStyles.proileIcon}>
             <ProfileCard user={currentUser} />
           </View>
@@ -48,22 +51,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-
-    gap: "1em",
+    padding: 20,
+    gap: 10,
   },
-  photo: {
-    width: "40em",
-    height: "30em",
-    border: "solid 5px blue",
+  photoContainer: {
+    width: 600,
+    height: 400,
+    borderWidth: 2,
   },
   body: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
-    gap: "2em",
+    gap: 10,
   },
   answerContainer: {
     flexDirection: "row",
-    gap: "2em",
+    gap: 10,
   },
 });

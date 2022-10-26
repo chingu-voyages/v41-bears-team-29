@@ -23,17 +23,17 @@ export default function ScoreCard({ item }) {
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
-    border: "solid 1px red",
+    // border: "solid 1px red",
     height: 150,
     width: 150,
     margin: 10,
   },
   image: {
-    width: "100%",
+    // width: "100%",
     height: 100,
-    border: "solid 1px red",
+    // border: "solid 1px red",
   },
   answer: {
-    fontSize: "2em",
+    fontSize: 10,
   },
 });
