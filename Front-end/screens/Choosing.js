@@ -18,7 +18,7 @@ import { AuthContext } from "../context/auth";
 
 export default function Choosing({ navigation }) {
   const { currentUser, photo } = useContext(AuthContext);
-
+  console.log(photo);
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
@@ -27,7 +27,11 @@ export default function Choosing({ navigation }) {
             <GoBackBtn />
           </TouchableOpacity>
           <SafeAreaView style={styles.photoContainer}>
-            <Image source={{ uri: "data:image/jpg;base64," + photo }} />
+            <Image
+              source={{ uri: photo }}
+              style={{ width: 200, height: 200 }}
+            />
+            <Text>{JSON.stringify(photo)}</Text>
           </SafeAreaView>
           <View style={globalStyles.proileIcon}>
             <ProfileCard user={currentUser} />

@@ -6,8 +6,7 @@ import {
   Button,
   ImageBackground,
   TouchableOpacity,
-  SafeAreaView,
-  Image,
+  Alert,
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
 import GoBackBtn from "../components/goBackbtn";
@@ -22,7 +21,9 @@ export default function Capture({ navigation }) {
   const { currentUser, photo, setPhoto } = useContext(AuthContext);
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
-  let cameraRef = useRef();
+  const [showCamera, setShowCamera] = useState(true);
+  const [newPhoto, setNewPhoto] = useState(null);
+  let cameraRef = useRef(null);
 
   useEffect(() => {
     (async () => {
@@ -45,13 +46,19 @@ export default function Capture({ navigation }) {
   }
 
   const takePic = async () => {
-    let options = {
-      quality: 1,
-      base64: true,
-      exif: false,
-    };
-    let newPhoto = await cameraRef.current.takePictureAsync(options);
-    setPhoto(newPhoto);
+    if (cameraRef) {
+      try {
+        let newPic = await cameraRef.current.takePictureAsync({
+          allowEditing: true,
+          aspect: [6, 8],
+          quality: 1,
+        });
+        setNewPhoto(newPic.uri);
+        return newPic;
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
 
   return (
@@ -67,13 +74,32 @@ export default function Capture({ navigation }) {
           <View style={globalStyles.proileIcon}>
             <ProfileCard user={currentUser} />
           </View>
-          <Button onPress={takePic} title="Take pic" />
-          <Button title="retake" />
+          <Button
+            onPress={async () => {
+              const r = await takePic();
+              Alert.alert("debug", JSON.stringify(r));
+              setPhoto(r.uri);
+            }}
+            title="Take pic"
+          />
+          <Button title="retake" onPress={() => setShowCamera(true)} />
           <Button
             title="go to Choosing"
             onPress={() => navigation.navigate("Choosing")}
           />
         </View>
+        {photo && (
+          <View>
+            <Image
+              source={{ uri: photo }}
+              style={{ width: 200, height: 200 }}
+            />
+            <Image
+              source={{ uri: newPhoto }}
+              style={{ width: 200, height: 200 }}
+            />
+          </View>
+        )}
       </View>
     </ImageBackground>
   );
@@ -92,7 +118,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   cameraContainer: {
-    flex: 2,
+    padding: 2,
+    margin: 10,
     borderWidth: 2,
     borderColor: "blue",
   },
