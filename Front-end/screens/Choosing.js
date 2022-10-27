@@ -33,7 +33,7 @@ export default function Choosing({ navigation }) {
             />
             <Text>{JSON.stringify(photo)}</Text>
           </SafeAreaView>
-          <View style={globalStyles.proileIcon}>
+          <View style={globalStyles.profileIcon}>
             <ProfileCard user={currentUser} />
           </View>
         </View>

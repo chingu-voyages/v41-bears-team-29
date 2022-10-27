@@ -11,7 +11,7 @@ export default function ScoreCard({ item }) {
   const { answer, photo } = item;
 
   return (
-    <View style={styles.container} onPress={() => goToCapute}>
+    <View style={styles.container}>
       <TouchableOpacity>
         <Image style={styles.image} source={photo}></Image>
         <Text style={styles.answer}>{answer}</Text>
@@ -22,8 +22,6 @@ export default function ScoreCard({ item }) {
 
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
-    // border: "solid 1px red",
     height: 150,
     width: 150,
     margin: 10,
@@ -31,9 +29,8 @@ const styles = StyleSheet.create({
   image: {
     // width: "100%",
     height: 100,
-    // border: "solid 1px red",
   },
   answer: {
-    fontSize: 10,
+    fontSize: 8,
   },
 });

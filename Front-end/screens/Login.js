@@ -5,30 +5,28 @@ import {
   Button,
   ImageBackground,
   FlatList,
-  TouchableOpacity,
-} from "react-native";
-import ProfileCard from "../components/profileCard";
-import bgImage from "../assets/img/bg40.jpg";
-import { globalStyles } from "../styles/global";
-import React, { useState, useContext } from "react";
-import GoBackBtn from "../components/goBackbtn";
-import { AuthContext } from "../context/auth";
+  TouchableOpacity
+} from 'react-native'
+import ProfileCard from '../components/profileCard'
+import bgImage from '../assets/img/bg40.jpg'
+import { globalStyles } from '../styles/global'
+import React, { useState, useContext } from 'react'
+import GoBackBtn from '../components/goBackbtn'
+import { AuthContext } from '../context/auth'
 
 export default function Login({ navigation }) {
   const { users, setCurrentUser } = useContext(AuthContext);
 
   const onPressProfileHandler = (profile) => {
-    navigation.navigate("Capture");
-    console.log("click", profile);
-
+    navigation.navigate('Capture')
     setCurrentUser(profile);
-  };
+  }
 
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+          <TouchableOpacity>
             <GoBackBtn />
           </TouchableOpacity>
           <Text style={globalStyles.appName}>What's that?!</Text>
@@ -51,12 +49,12 @@ export default function Login({ navigation }) {
         </View>
 
         <Button
-          title="go to ProfileAdmin"
-          onPress={() => navigation.navigate("ProfileAdmin")}
+          title='go to ProfileAdmin'
+          onPress={() => navigation.navigate('ProfileAdmin')}
         />
       </View>
     </ImageBackground>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -74,10 +72,10 @@ const styles = StyleSheet.create({
   profileContainer: {
     margin: 10,
     height: 200,
-    width: 200,
+    width: 200
   },
   header: {
-    alignItems: "center",
-    flexDirection: "row",
-  },
-});
+    alignItems: 'center',
+    flexDirection: 'row'
+  }
+})

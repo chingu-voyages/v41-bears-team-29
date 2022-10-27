@@ -71,7 +71,7 @@ export default function Capture({ navigation }) {
           <Camera style={styles.camera} ref={cameraRef}></Camera>
         </View>
         <View style={styles.rightColumn}>
-          <View style={globalStyles.proileIcon}>
+          <View style={globalStyles.profileIcon}>
             <ProfileCard user={currentUser} />
           </View>
           <Button
@@ -88,18 +88,6 @@ export default function Capture({ navigation }) {
             onPress={() => navigation.navigate("Choosing")}
           />
         </View>
-        {photo && (
-          <View>
-            <Image
-              source={{ uri: photo }}
-              style={{ width: 200, height: 200 }}
-            />
-            <Image
-              source={{ uri: newPhoto }}
-              style={{ width: 200, height: 200 }}
-            />
-          </View>
-        )}
       </View>
     </ImageBackground>
   );
