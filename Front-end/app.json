@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "test3",
-    "slug": "test3",
+    "name": "Voyage-41",
+    "slug": "Voyage-41",
     "version": "1.0.0",
     "orientation": "landscape",
     "icon": "./assets/icon.png",
@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#ffffff"
     },
     "plugins": [
       [
@@ -18,6 +18,12 @@
           "photosPermission": "Allow App to acces your photos",
           "savePhotosPermission": "Allow App to save photos",
           "isAccessMediaLocationEnabled": "true"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
       ]
     ],
