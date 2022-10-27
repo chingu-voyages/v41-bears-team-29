@@ -9,7 +9,7 @@ import {
   Alert,
   TouchableOpacity,
 } from "react-native";
-import EditProfileCard from "../components/editProfileCard";
+import Card from "../components/card";
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import React, { useState, useContext } from "react";
@@ -75,16 +75,14 @@ export default function ProfileAdmin({ navigation }) {
           submitHandle={submitHandle}
           openImagePickerAsync={openImagePickerAsync}
         />
-        <View style={styles.usersList}>
+        <View style={globalStyles.userList}>
+          <Card />
           <FlatList
             keyExtractor={(user) => user.id}
             horizontal={true}
             data={users}
             renderItem={({ item }) => (
-              <EditProfileCard
-                user={item}
-                deleteUserHandler={deleteUserHandler}
-              />
+              <Card user={item} deleteUserHandler={deleteUserHandler} />
             )}
           />
         </View>
@@ -101,7 +99,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   headerContainer: {
+    alignItems: "center",
     flexDirection: "row",
+    flex: 2,
   },
   usersList: {
     width: "100%",

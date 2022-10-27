@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar'
+import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -6,48 +6,48 @@ import {
   Button,
   ImageBackground,
   FlatList,
-  TouchableOpacity
-} from 'react-native'
-import bgImage from '../assets/img/bg40.jpg'
-import { globalStyles } from '../styles/global'
-import ProfileCard from '../components/profileCard'
-import React, { useState, useContext } from 'react'
-import ScoreCard from '../components/scoreCard'
-import GoBackBtn from '../components/goBackbtn'
-import { AuthContext } from '../context/auth'
+  TouchableOpacity,
+} from "react-native";
+import bgImage from "../assets/img/bg40.jpg";
+import { globalStyles } from "../styles/global";
+import ProfileCard from "../components/card";
+import React, { useState, useContext } from "react";
+import ScoreCard from "../components/scoreCard";
+import GoBackBtn from "../components/goBackbtn";
+import { AuthContext } from "../context/auth";
 
 export default function Score({ navigation }) {
   const { users, setUser, setCurrentUser, currentUser } =
-    useContext(AuthContext)
+    useContext(AuthContext);
 
   const [score, setScore] = useState([
     {
-      answer: 'sofa',
-      photo: require('../assets/img/sofa.jpg'),
-      id: 1
+      answer: "sofa",
+      photo: require("../assets/img/sofa.jpg"),
+      id: 1,
     },
     {
-      answer: 'table',
-      photo: require('../assets/img/table.jpg'),
-      id: 2
+      answer: "table",
+      photo: require("../assets/img/table.jpg"),
+      id: 2,
     },
     {
-      answer: 'chair',
-      photo: require('../assets/img/chair.jpg'),
-      id: 3
+      answer: "chair",
+      photo: require("../assets/img/chair.jpg"),
+      id: 3,
     },
     {
-      answer: 'cup',
-      photo: require('../assets/img/cup.jpg'),
-      id: 4
-    }
-  ])
+      answer: "cup",
+      photo: require("../assets/img/cup.jpg"),
+      id: 4,
+    },
+  ]);
 
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={() => navigation.navigate('Capture')}>
+          <TouchableOpacity onPress={() => navigation.navigate("Capture")}>
             <GoBackBtn />
           </TouchableOpacity>
           <View style={globalStyles.profileIcon}>
@@ -65,18 +65,18 @@ export default function Score({ navigation }) {
           />
         </View>
         <Button
-          title='go to Capture'
-          onPress={() => navigation.navigate('Capture')}
+          title="go to Capture"
+          onPress={() => navigation.navigate("Capture")}
         />
       </View>
     </ImageBackground>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-between'
+    justifyContent: "space-between",
   },
   header: {
     flexDirection: "row",
