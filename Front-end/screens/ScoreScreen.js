@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -12,8 +11,8 @@ import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import ProfileCard from "../components/card";
 import React, { useState, useContext } from "react";
-import ScoreCard from "../components/scoreCard";
-import GoBackBtn from "../components/goBackbtn";
+import Card from "../components/card";
+import GoBackBtn from "../components/goBackBtn";
 import { AuthContext } from "../context/auth";
 
 export default function Score({ navigation }) {
@@ -22,24 +21,28 @@ export default function Score({ navigation }) {
 
   const [score, setScore] = useState([
     {
-      answer: "sofa",
+      name: "sofa",
       photo: require("../assets/img/sofa.jpg"),
       id: 1,
+      type: "answer",
     },
     {
-      answer: "table",
+      name: "table",
       photo: require("../assets/img/table.jpg"),
       id: 2,
+      type: "answer",
     },
     {
-      answer: "chair",
+      name: "chair",
       photo: require("../assets/img/chair.jpg"),
       id: 3,
+      type: "answer",
     },
     {
-      answer: "cup",
+      name: "cup",
       photo: require("../assets/img/cup.jpg"),
       id: 4,
+      type: "answer",
     },
   ]);
 
@@ -51,7 +54,7 @@ export default function Score({ navigation }) {
             <GoBackBtn />
           </TouchableOpacity>
           <View style={globalStyles.profileIcon}>
-            <ProfileCard user={currentUser} />
+            {/* <ProfileCard user={currentUser} /> */}
           </View>
           <Text style={globalStyles.headerTitle}>Score</Text>
           <Text style={globalStyles.headerTitle}>25</Text>
@@ -61,7 +64,7 @@ export default function Score({ navigation }) {
             keyExtractor={(item) => item.id}
             horizontal={true}
             data={score}
-            renderItem={({ item }) => <ScoreCard item={item} />}
+            renderItem={({ item }) => <Card item={item} />}
           />
         </View>
         <Button
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
+    padding: 20,
   },
   header: {
     flexDirection: "row",

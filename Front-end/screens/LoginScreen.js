@@ -11,7 +11,7 @@ import Card from "../components/card";
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import React, { useState, useContext } from "react";
-import GoBackBtn from "../components/goBackbtn";
+import MenuBtn from "../components/menuBtn";
 import { AuthContext } from "../context/auth";
 
 export default function Login({ navigation }) {
@@ -27,7 +27,7 @@ export default function Login({ navigation }) {
       <View style={styles.container}>
         <View style={styles.header}>
           <TouchableOpacity>
-            <GoBackBtn />
+            <MenuBtn />
           </TouchableOpacity>
           <Text style={globalStyles.appName}>What's that?!</Text>
         </View>
@@ -42,7 +42,7 @@ export default function Login({ navigation }) {
                 style={styles.profileContainer}
                 onPress={() => onPressProfileHandler(item)}
               >
-                <Card user={item} />
+                <Card item={item} />
               </TouchableOpacity>
             )}
           />
@@ -71,6 +71,6 @@ const styles = StyleSheet.create({
   },
 
   profileContainer: {
-    margin: 10,
+    // margin: 10,
   },
 });

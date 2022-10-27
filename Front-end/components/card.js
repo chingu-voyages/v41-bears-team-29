@@ -7,11 +7,14 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function Card({ user, answer }) {
+export default function Card({ item }) {
+  const { name, photo, type } = item;
   return (
-    <View style={user ? styles.containerUser : styles.containerAnswer}>
-      <Image style={styles.profilePhoto} source={user?.photo} />
-      <Text style={styles.profileName}>{user?.name}</Text>
+    <View
+      style={type === "user" ? styles.containerUser : styles.containerAnswer}
+    >
+      <Image style={styles.profilePhoto} source={photo} />
+      <Text style={styles.profileName}>{name}</Text>
     </View>
   );
 }
@@ -24,6 +27,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderRadius: 10,
     borderColor: "#96CEB4",
+    marginHorizontal: 10,
   },
   profilePhoto: {
     width: 160,
@@ -43,5 +47,6 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     borderRadius: 10,
     borderColor: "#E99497",
+    marginHorizontal: 10,
   },
 });

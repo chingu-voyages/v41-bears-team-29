@@ -1,15 +1,15 @@
-import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
 
-export default function MenuBtn() {
-  return <Ionicons name="menu" style={styles.menuBtn} />;
+export default function CameraBtn() {
+  return <Feather name="camera" style={styles.camera} />;
 }
 const styles = StyleSheet.create({
-  menuBtn: {
-    fontSize: 60,
+  camera: {
+    fontSize: 90,
     textAlignVertical: "center",
-    width: 90,
-    height: 90,
+    width: 150,
+    height: 150,
     marginHorizontal: 10,
     borderWidth: 5,
     borderRadius: 100,

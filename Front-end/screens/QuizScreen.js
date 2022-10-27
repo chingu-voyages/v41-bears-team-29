@@ -34,7 +34,7 @@ export default function Choosing({ navigation }) {
             <Text>{JSON.stringify(photo)}</Text>
           </SafeAreaView>
           <View style={globalStyles.profileIcon}>
-            <ProfileCard user={currentUser} />
+            {/* <ProfileCard user={currentUser} /> */}
           </View>
         </View>
         <View style={styles.answerContainer}>

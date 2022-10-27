@@ -9,7 +9,8 @@ import {
   Alert,
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
-import GoBackBtn from "../components/goBackbtn";
+import GoBackBtn from "../components/goBackBtn";
+import CameraBtn from "../components/cameraBtn";
 import ProfileCard from "../components/card";
 import { globalStyles } from "../styles/global";
 import React, { useContext, useState, useEffect, useRef } from "react";
@@ -72,16 +73,18 @@ export default function Capture({ navigation }) {
         </View>
         <View style={styles.rightColumn}>
           <View style={globalStyles.profileIcon}>
-            <ProfileCard user={currentUser} />
+            {/* <ProfileCard user={currentUser} /> */}
           </View>
-          <Button
+          <TouchableOpacity
             onPress={async () => {
               const r = await takePic();
               Alert.alert("debug", JSON.stringify(r));
               setPhoto(r.uri);
             }}
-            title="Take pic"
-          />
+          >
+            <CameraBtn />
+          </TouchableOpacity>
+
           <Button title="retake" onPress={() => setShowCamera(true)} />
           <Button
             title="go to Choosing"

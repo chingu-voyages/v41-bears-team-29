@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button, ImageBackground } from "react-native";
-import ProfileAdmin from "./ProfileAdmin";
+import ProfileAdmin from "./ProfileAdminScreen";
 import { globalStyles } from "../styles/global";
 import bgImage from "../assets/img/bg40.jpg";
 
