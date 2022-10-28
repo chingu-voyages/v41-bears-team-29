@@ -81,7 +81,7 @@ export default function ProfileAdmin({ navigation }) {
             horizontal={true}
             data={users}
             renderItem={({ item }) => (
-              <Card user={item} deleteUserHandler={deleteUserHandler} />
+              <Card item={item} deleteUserHandler={deleteUserHandler} />
             )}
           />
         </View>
