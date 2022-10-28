@@ -14,7 +14,7 @@ import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import React, { useState, useContext } from "react";
 import Addprofile from "../components/addProfile";
-import GoBackBtn from "../components/goBackbtn";
+import GoBackBtn from "../components/goBackBtn";
 import * as ImagePicker from "expo-image-picker";
 import { AuthContext } from "../context/auth";
 
@@ -76,7 +76,6 @@ export default function ProfileAdmin({ navigation }) {
           openImagePickerAsync={openImagePickerAsync}
         />
         <View style={globalStyles.userList}>
-          <Card />
           <FlatList
             keyExtractor={(user) => user.id}
             horizontal={true}

@@ -10,7 +10,7 @@ import {
   Image,
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
-import GoBackBtn from "../components/goBackbtn";
+import GoBackBtn from "../components/goBackBtn";
 import ProfileCard from "../components/card";
 import { globalStyles } from "../styles/global";
 import React, { useContext } from "react";
