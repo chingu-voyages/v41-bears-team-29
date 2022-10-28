@@ -10,8 +10,8 @@ import {
   Image,
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
-import GoBackBtn from "../components/goBackbtn";
-import ProfileCard from "../components/profileCard";
+import GoBackBtn from "../components/goBackBtn";
+import ProfileCard from "../components/card";
 import { globalStyles } from "../styles/global";
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth";
@@ -34,7 +34,7 @@ export default function Choosing({ navigation }) {
             <Text>{JSON.stringify(photo)}</Text>
           </SafeAreaView>
           <View style={globalStyles.profileIcon}>
-            <ProfileCard user={currentUser} />
+            {/* <ProfileCard user={currentUser} /> */}
           </View>
         </View>
         <View style={styles.answerContainer}>
