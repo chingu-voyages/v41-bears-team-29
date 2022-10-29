@@ -9,7 +9,7 @@ import {
   Alert,
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
-import GoBackBtn from "../components/goBackBtn";
+import GoBackBtn from "../components/goBackbtn";
 import CameraBtn from "../components/cameraBtn";
 import ProfileCard from "../components/card";
 import { globalStyles } from "../styles/global";
