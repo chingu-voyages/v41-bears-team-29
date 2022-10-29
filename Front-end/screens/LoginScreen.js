@@ -10,9 +10,12 @@ import {
 import Card from "../components/card";
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from 'react'
 import MenuBtn from "../components/menuBtn";
 import { AuthContext } from "../context/auth";
+import Clarifai from '../Api/Clarifai'
+
+const clarifai = new Clarifai('', '', '')
 
 export default function Login({ navigation }) {
   const { users, setCurrentUser } = useContext(AuthContext);
@@ -21,6 +24,16 @@ export default function Login({ navigation }) {
     navigation.navigate("Capture");
     setCurrentUser(profile);
   };
+
+  useEffect(() =>{
+    // clarifai.predictByUrl('https://samples.clarifai.com/metro-north.jpg')
+    //   .then(data =>{
+    //     console.log(data)
+    //   })
+    //   .catch(error =>{
+    //     console.log(error)
+    //   })
+  }, [])
 
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
