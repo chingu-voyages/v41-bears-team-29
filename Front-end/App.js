@@ -7,6 +7,7 @@ import Login from "./screens/LoginScreen";
 import ProfileAdmin from "./screens/ProfileAdminScreen";
 import Register from "./screens/RegisterScreen";
 import Score from "./screens/ScoreScreen";
+import Starting from "./screens/StartingScreen";
 import { AuthProvider } from "./context/auth";
 import { useFonts } from "expo-font";
 
@@ -30,7 +31,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="Starting">
+          <Stack.Screen name="Starting" component={Starting} />
+
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Register" component={Register} />
           <Stack.Screen name="Capture" component={Capture} />
