@@ -14,7 +14,7 @@ import React, { useState, useContext } from "react";
 import MenuBtn from "../components/menuBtn";
 import { AuthContext } from "../context/auth";
 
-export default function Login({ navigation }) {
+export default function LoginScreen({ navigation }) {
   const { users, setCurrentUser } = useContext(AuthContext);
 
   const onPressProfileHandler = (profile) => {

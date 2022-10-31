@@ -16,7 +16,7 @@ import { globalStyles } from "../styles/global";
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth";
 
-export default function Choosing({ navigation }) {
+export default function QuizScreen({ navigation }) {
   const { currentUser, photo } = useContext(AuthContext);
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>

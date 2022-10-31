@@ -18,7 +18,7 @@ import { AuthContext } from "../context/auth";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 
-export default function Capture({ navigation }) {
+export default function CaptureScreen({ navigation }) {
   const { currentUser, photo, setPhoto } = useContext(AuthContext);
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();

@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Capture from "./screens/CaptureScreen";
-import Choosing from "./screens/QuizScreen";
-import Login from "./screens/LoginScreen";
-import ProfileAdmin from "./screens/ProfileAdminScreen";
-import Register from "./screens/RegisterScreen";
-import Score from "./screens/ScoreScreen";
-import Starting from "./screens/StartingScreen";
+import CaptureScreen from "./screens/CaptureScreen";
+import ChoosingScreen from "./screens/QuizScreen";
+import LoginScreen from "./screens/LoginScreen";
+import ProfileAdminScreen from "./screens/ProfileAdminScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ScoreScreen from "./screens/ScoreScreen";
+import StartingScreen from "./screens/StartingScreen";
+import SignInScreen from "./screens/SignInScreen";
 import { AuthProvider } from "./context/auth";
 import { useFonts } from "expo-font";
 
@@ -32,14 +33,15 @@ export default function App() {
     <NavigationContainer>
       <AuthProvider>
         <Stack.Navigator initialRouteName="Starting">
-          <Stack.Screen name="Starting" component={Starting} />
+          <Stack.Screen name="Starting" component={StartingScreen} />
 
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Register" component={Register} />
-          <Stack.Screen name="Capture" component={Capture} />
-          <Stack.Screen name="Choosing" component={Choosing} />
-          <Stack.Screen name="Score" component={Score} />
-          <Stack.Screen name="ProfileAdmin" component={ProfileAdmin} />
+          <Stack.Screen name="SignIn" component={SignInScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Capture" component={CaptureScreen} />
+          <Stack.Screen name="Choosing" component={ChoosingScreen} />
+          <Stack.Screen name="Score" component={ScoreScreen} />
+          <Stack.Screen name="ProfileAdmin" component={ProfileAdminScreen} />
         </Stack.Navigator>
       </AuthProvider>
     </NavigationContainer>

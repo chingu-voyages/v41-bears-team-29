@@ -28,13 +28,11 @@ const StartingScreen = ({ navigation }) => {
             style={styles.button}
             onPress={() => navigation.navigate("Register")}
             title="Register"
-            show={"register"}
           />
           <Button
             style={styles.button}
-            onPress={() => navigation.navigate("Register")}
-            title="Login"
-            display={"login"}
+            onPress={() => navigation.navigate("SignIn")}
+            title="Sign in"
           />
           <View>
             <Button style={styles.button} title="Continue with Google" />
