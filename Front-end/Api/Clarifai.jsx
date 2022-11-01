@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios from "axios";
 
 export default class Clarifai {
-  #USER_ID
-  #PAT
-  #APP_ID
-  #config
+  #USER_ID;
+  #PAT;
+  #APP_ID;
+  #config;
 
   /**
    * Clarifai is a class to get AI predictions
@@ -13,10 +13,15 @@ export default class Clarifai {
    * @param {string} appId Clarifai portal app id
    */
   constructor(userId, pat, appId) {
-    this.#USER_ID = userId
-    this.#PAT = pat
-    this.#APP_ID = appId
-    this.#config = { headers: { 'Content-Type': 'text/json', Authorization: `Key ${this.#PAT}` } }
+    this.#USER_ID = userId;
+    this.#PAT = pat;
+    this.#APP_ID = appId;
+    this.#config = {
+      headers: {
+        "Content-Type": "text/json",
+        Authorization: `Key ${this.#PAT}`,
+      },
+    };
   }
 
   /**
@@ -28,24 +33,23 @@ export default class Clarifai {
    */
   predictByUrl = async (
     imageUrl,
-    modelId = 'general-image-recognition',
-    modelVersionId = 'aa7f35c01e0642fda5cf400f543e7c40'
+    modelId = "91fbf60c37ec4e22a53ad82cfda631ba", //
+    modelVersionId = "4ed6524163274eb0bb5533ea1919a6e0" //our own version
+    // modelVersionId = 'aa7f35c01e0642fda5cf400f543e7c40'
   ) => {
     const response = await axios.post(
       `https://api.clarifai.com/v2/models/${modelId}/versions/${modelVersionId}/outputs`,
       {
         user_app_id: {
           user_id: this.#USER_ID,
-          app_id: this.#APP_ID
+          app_id: this.#APP_ID,
         },
-        inputs: [
-          { data: { image: { url: imageUrl } } }
-        ]
+        inputs: [{ data: { image: { url: imageUrl } } }],
       },
       this.#config
-    )
-    return response.data.outputs[0].data
-  }
+    );
+    return response.data.outputs[0].data;
+  };
 
   /**
    * To get an AI predictions from imageBytes
@@ -56,22 +60,20 @@ export default class Clarifai {
    */
   predictByBytes = async (
     imageBytes,
-    modelId = 'general-image-recognition',
-    modelVersionId = 'aa7f35c01e0642fda5cf400f543e7c40'
+    modelId = "general-image-recognition",
+    modelVersionId = "aa7f35c01e0642fda5cf400f543e7c40"
   ) => {
     const response = await axios.post(
       `https://api.clarifai.com/v2/models/${modelId}/versions/${modelVersionId}/outputs`,
       {
         user_app_id: {
           user_id: this.#USER_ID,
-          app_id: this.#APP_ID
+          app_id: this.#APP_ID,
         },
-        inputs: [
-          { data: { image: { base64: imageBytes } } }
-        ]
+        inputs: [{ data: { image: { base64: imageBytes } } }],
       },
       this.#config
-    )
-    return response.data.outputs[0].data
-  }
+    );
+    return response.data.outputs[0].data;
+  };
 }

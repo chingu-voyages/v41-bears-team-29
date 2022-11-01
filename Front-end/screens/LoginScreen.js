@@ -10,12 +10,16 @@ import {
 import Card from "../components/card";
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect } from "react";
 import MenuBtn from "../components/menuBtn";
 import { AuthContext } from "../context/auth";
-import Clarifai from '../Api/Clarifai'
+import Clarifai from "../Api/Clarifai";
 
-const clarifai = new Clarifai('', '', '')
+const clarifai = new Clarifai(
+  "w55zqbb8z4wu",
+  "91fbf60c37ec4e22a53ad82cfda631ba",
+  "what-is-that"
+);
 
 export default function LoginScreen({ navigation }) {
   const { users, setCurrentUser } = useContext(AuthContext);
@@ -25,15 +29,18 @@ export default function LoginScreen({ navigation }) {
     setCurrentUser(profile);
   };
 
-  useEffect(() =>{
-    // clarifai.predictByUrl('https://samples.clarifai.com/metro-north.jpg')
-    //   .then(data =>{
-    //     console.log(data)
-    //   })
-    //   .catch(error =>{
-    //     console.log(error)
-    //   })
-  }, [])
+  useEffect(() => {
+    clarifai
+      .predictByUrl(
+        "https://cb2.scene7.com/is/image/CB2/KMEyelashMauvePillow20x20inSHS21/$web_pdp_main_carousel_xs$/210219091528/20-eyelash-mauve-pillow.jpg"
+      )
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>

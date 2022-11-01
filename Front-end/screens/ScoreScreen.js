@@ -12,7 +12,7 @@ import { globalStyles } from "../styles/global";
 import ProfileCard from "../components/card";
 import React, { useState, useContext } from "react";
 import Card from "../components/card";
-import GoBackBtn from "../components/goBackbtn";
+import GoBackBtn from "../components/goBackBtn";
 import { AuthContext } from "../context/auth";
 
 export default function ScoreScreen({ navigation }) {
