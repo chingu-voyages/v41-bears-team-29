@@ -32,7 +32,7 @@ export default function LoginScreen({ navigation }) {
   useEffect(() => {
     clarifai
       .predictByUrl(
-        "https://cb2.scene7.com/is/image/CB2/KMEyelashMauvePillow20x20inSHS21/$web_pdp_main_carousel_xs$/210219091528/20-eyelash-mauve-pillow.jpg"
+        "https://www.aram.co.uk/media/catalog/product/cache/2edc4d78edeeaa2cce5e9c6f1dd0dbec/m/r/mr-chair-with-arms_mies-van-der-rohe_bigla-1-1200.jpg"
       )
       .then((data) => {
         console.log(data);
