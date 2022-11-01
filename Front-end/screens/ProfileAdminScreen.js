@@ -14,7 +14,7 @@ import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import React, { useState, useContext } from "react";
 import Addprofile from "../components/addProfile";
-import GoBackBtn from "../components/goBackBtn";
+import GoBackBtn from "../components/goBackbtn";
 import * as ImagePicker from "expo-image-picker";
 import { AuthContext } from "../context/auth";
 
