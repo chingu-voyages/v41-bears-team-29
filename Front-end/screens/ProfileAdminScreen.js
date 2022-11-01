@@ -18,7 +18,7 @@ import GoBackBtn from "../components/goBackBtn";
 import * as ImagePicker from "expo-image-picker";
 import { AuthContext } from "../context/auth";
 
-export default function ProfileAdmin({ navigation }) {
+export default function ProfileAdminScreen({ navigation }) {
   const { users, setUsers } = useContext(AuthContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
