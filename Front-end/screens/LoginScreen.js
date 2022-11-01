@@ -17,7 +17,7 @@ import Clarifai from '../Api/Clarifai'
 
 const clarifai = new Clarifai('', '', '')
 
-export default function Login({ navigation }) {
+export default function LoginScreen({ navigation }) {
   const { users, setCurrentUser } = useContext(AuthContext);
 
   const onPressProfileHandler = (profile) => {

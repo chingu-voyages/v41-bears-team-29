@@ -15,7 +15,7 @@ import Card from "../components/card";
 import GoBackBtn from "../components/goBackbtn";
 import { AuthContext } from "../context/auth";
 
-export default function Score({ navigation }) {
+export default function ScoreScreen({ navigation }) {
   const { users, setUser, setCurrentUser, currentUser } =
     useContext(AuthContext);
 

@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
     photo: "",
     id: "",
   });
+  const [owners, setOwners] = useState([]);
   const [users, setUsers] = useState([
     {
       name: "Tom",
@@ -48,7 +49,16 @@ const AuthProvider = ({ children }) => {
   const [photo, setPhoto] = useState();
   return (
     <AuthContext.Provider
-      value={{ currentUser, setCurrentUser, users, setUsers, photo, setPhoto }}
+      value={{
+        currentUser,
+        setCurrentUser,
+        users,
+        setUsers,
+        photo,
+        setPhoto,
+        owners,
+        setOwners,
+      }}
     >
       {children}
     </AuthContext.Provider>

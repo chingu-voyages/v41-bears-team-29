@@ -1,16 +1,17 @@
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import React, { useState } from "react";
+import { globalStyles } from "../styles/global";
 
 export default function Addprofile({
-                                     submitHandle,
-                                     openImagePickerAsync,
-                                     changeHandler,
-                                     newUser
-                                   }) {
+  submitHandle,
+  openImagePickerAsync,
+  changeHandler,
+  newUser,
+}) {
   return (
     <View style={styles.addProfile}>
       <Text style={styles.formText}>Name:</Text>
-      <TextInput style={styles.input} onChangeText={changeHandler} />
+      <TextInput style={globalStyles.input} onChangeText={changeHandler} />
       <Text style={styles.formText}>Photo:</Text>
       <Button
         style={styles.addPhoto}
@@ -20,10 +21,10 @@ export default function Addprofile({
       <Button
         style={styles.btn}
         onPress={() => submitHandle(newUser)}
-        title='ADD'
+        title="ADD"
       />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -36,19 +37,10 @@ const styles = StyleSheet.create({
     borderColor: "blue",
     borderWidth: 2,
   },
-  input: {
-    borderWidth: 1,
-    borderColor: 'blue',
-    padding: 8,
-    borderRadius: 10,
-    fontSize: 10,
-    width: 200,
-  },
+
   formText: {
     fontSize: 25,
   },
   addPhoto: {},
-  btn:{
-
-  }
-})
+  btn: {},
+});

@@ -16,9 +16,8 @@ import { globalStyles } from "../styles/global";
 import React, { useContext } from "react";
 import { AuthContext } from "../context/auth";
 
-export default function Choosing({ navigation }) {
+export default function QuizScreen({ navigation }) {
   const { currentUser, photo } = useContext(AuthContext);
-  console.log(photo);
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
@@ -27,10 +26,6 @@ export default function Choosing({ navigation }) {
             <GoBackBtn />
           </TouchableOpacity>
           <SafeAreaView style={styles.photoContainer}>
-            <Image
-              source={{ uri: photo }}
-              style={{ width: 200, height: 200 }}
-            />
             <Text>{JSON.stringify(photo)}</Text>
           </SafeAreaView>
           <View style={globalStyles.profileIcon}>

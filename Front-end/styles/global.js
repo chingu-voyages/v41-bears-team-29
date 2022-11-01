@@ -32,4 +32,19 @@ export const globalStyles = StyleSheet.create({
     flex: 3,
     overflow: "hidden",
   },
+  input: {
+    borderColor: "blue",
+    padding: 8,
+    borderRadius: 10,
+    fontSize: 10,
+    width: 200,
+    borderBottomWidth: 1,
+  },
+  errorText: {
+    color: "crimson",
+    fontWeight: "bold",
+    marginTop: 10,
+    marginBottom: 6,
+    textAlign: "center",
+  },
 });
