@@ -32,6 +32,7 @@ app.use(cors({
   origin: 'http://localhost:19006',
   credentials: true
 }))
+app.use(express.static('uploads'))
 // Save user credentials in cookie
 app.use(sessionMiddleware)
 // Parse any json data

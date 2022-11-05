@@ -14,7 +14,7 @@ export class UsersModel {
   async index(): Promise<User[]> {
     try {
       const connect = await database.connect()
-      const sql = `SELECT *
+      const sql = `SELECT id, username, email, image
                    FROM users`
       const results = await connect.query(sql)
       connect.release()
