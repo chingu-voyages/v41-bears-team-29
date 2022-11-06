@@ -36,10 +36,12 @@ export default function QuizScreen({ navigation }) {
             <GoBackBtn />
           </TouchableOpacity>
           <SafeAreaView style={styles.photoContainer}>
-            <Image
-              source={{ uri: "data:image/jpg;base64," + photo.base64 }}
-              style={styles.preview}
-            />
+            {photo && (
+              <Image
+                source={{ uri: "data:image/jpg;base64," + photo.base64 }}
+                style={styles.preview}
+              />
+            )}
           </SafeAreaView>
           <View style={globalStyles.profileIcon}>
             {/* <ProfileCard user={currentUser} /> */}

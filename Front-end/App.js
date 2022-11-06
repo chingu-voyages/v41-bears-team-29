@@ -12,8 +12,7 @@ import SignInScreen from "./screens/SignInScreen";
 // import { AuthProvider } from "./context/auth";
 import AuthContextProvider from './context/AuthContext'
 import { useFonts } from "expo-font";
-
-const Stack = createNativeStackNavigator();
+import RootNavigator from "./navigator/RootNavigator";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -33,16 +32,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthContextProvider>
-        <Stack.Navigator initialRouteName="Starting">
-          <Stack.Screen name="Starting" component={StartingScreen} />
-          <Stack.Screen name="SignIn" component={SignInScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Register" component={RegisterScreen} />
-          <Stack.Screen name="Capture" component={CaptureScreen} />
-          <Stack.Screen name="Choosing" component={ChoosingScreen} />
-          <Stack.Screen name="Score" component={ScoreScreen} />
-          <Stack.Screen name="ProfileAdmin" component={ProfileAdminScreen} />
-        </Stack.Navigator>
+        <RootNavigator />
       </AuthContextProvider>
     </NavigationContainer>
   );

@@ -29,19 +29,6 @@ export default function LoginScreen({ navigation }) {
     AuthDispatch({type: 'update_user', payload: profile})
   };
 
-  useEffect(() => {
-    clarifai
-      .predictByUrl(
-        "https://www.aram.co.uk/media/catalog/product/cache/2edc4d78edeeaa2cce5e9c6f1dd0dbec/m/r/mr-chair-with-arms_mies-van-der-rohe_bigla-1-1200.jpg"
-      )
-      .then((data) => {
-        console.log(data, "from login");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
