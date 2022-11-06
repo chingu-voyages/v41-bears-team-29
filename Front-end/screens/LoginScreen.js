@@ -12,14 +12,21 @@ import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import React, { useState, useContext, useEffect } from "react";
 import MenuBtn from "../components/menuBtn";
-import { AuthContext } from "../context/auth";
+import { AuthContext } from "../context/AuthContext";
+import Clarifai from "../Api/Clarifai";
+
+const clarifai = new Clarifai(
+  "w55zqbb8z4wu",
+  "91fbf60c37ec4e22a53ad82cfda631ba",
+  "what-is-that"
+);
 
 export default function LoginScreen({ navigation }) {
-  const { users, setCurrentUser } = useContext(AuthContext);
+  const { AuthState, AuthDispatch } = useContext(AuthContext);
 
   const onPressProfileHandler = (profile) => {
     navigation.navigate("Capture");
-    setCurrentUser(profile);
+    AuthDispatch({type: 'update_user', payload: profile})
   };
 
   return (
@@ -36,7 +43,7 @@ export default function LoginScreen({ navigation }) {
           <FlatList
             keyExtractor={(user) => user.id}
             horizontal={true}
-            data={users}
+            data={AuthState.kids}
             renderItem={({ item }) => (
               <TouchableOpacity
                 style={styles.profileContainer}

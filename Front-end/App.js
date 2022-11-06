@@ -1,6 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { AuthProvider } from "./context/auth";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import CaptureScreen from "./screens/CaptureScreen";
+import ChoosingScreen from "./screens/QuizScreen";
+import LoginScreen from "./screens/LoginScreen";
+import ProfileAdminScreen from "./screens/ProfileAdminScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ScoreScreen from "./screens/ScoreScreen";
+import StartingScreen from "./screens/StartingScreen";
+import SignInScreen from "./screens/SignInScreen";
+// import { AuthProvider } from "./context/auth";
+import AuthContextProvider from './context/AuthContext'
 import { useFonts } from "expo-font";
 import RootNavigator from "./navigator/RootNavigator";
 
@@ -21,9 +31,9 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      <AuthProvider>
+      <AuthContextProvider>
         <RootNavigator />
-      </AuthProvider>
+      </AuthContextProvider>
     </NavigationContainer>
   );
 }

@@ -2,7 +2,9 @@ export const defaultAuthContextState = {
   user: null,
   kids: null,
   activeKid: null,
-  objects: null
+  objects: null,
+  photo: null,
+  correctAnswer: null
 }
 
 export function init(initialState) {
@@ -18,7 +20,8 @@ export function AuthReducer(state, actions) {
         user: actions.payload.user,
         kids: actions.payload.kids,
         activeKid: null,
-        objects: null
+        objects: null,
+        correctAnswer: null
       }
     case 'add_new_kid':
       return {
@@ -42,6 +45,21 @@ export function AuthReducer(state, actions) {
       return {
         ...state,
         objects: state.objects.push(actions.payload)
+      }
+    case 'update_photo':
+      return {
+        ...state,
+        photo: actions.payload
+      }
+    case 'reset_photo':
+      return {
+        ...state,
+        photo: null
+      }
+    case 'update_correct_answer':
+      return {
+        ...state,
+        correctAnswer: actions.payload
       }
     case 'reset_all':
       return defaultAuthContextState

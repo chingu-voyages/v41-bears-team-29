@@ -13,18 +13,21 @@ import {
 import { globalStyles } from "../styles/global";
 import bgImage from "../assets/img/bg40.jpg";
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/auth";
+import { AuthContext } from "../context/AuthContext";
+import GoBackBtn from "../components/goBackBtn";
+import UsersEndpoints from '../Api/Users'
 import { Formik } from "formik";
 import * as yup from "yup";
-import GoBackBtn from "../components/goBackBtn";
+
+const userEndpoints = new UsersEndpoints()
 
 const ownersSchema = yup.object({
-  username: yup.string().required().min(4),
   email: yup.string().email().required(),
   password: yup.string().required().min(4),
 });
 
 export default function SignInScreen({ navigation, display }) {
+  const {AuthDispatch} = useContext(AuthContext)
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <TouchableOpacity onPress={() => navigation.navigate("Starting")}>
@@ -37,29 +40,24 @@ export default function SignInScreen({ navigation, display }) {
           <Text>Please log in to start playing with this incredible game</Text>
           <Formik
             initialValues={{
-              username: "",
               email: "",
               password: "",
             }}
             validationSchema={ownersSchema}
             onSubmit={(values, actions) => {
-              addNewOwner(values);
+              userEndpoints.authUser(values.email, values.password)
+                .then(data =>{
+                  AuthDispatch({type:'update_user', payload: data})
+                  navigation.navigate('Login')
+                })
+                .catch(error =>{
+                  AuthDispatch({type: 'reset_all'})
+                })
               actions.resetForm();
             }}
           >
             {(formikProps) => (
               <View>
-                <TextInput
-                  style={globalStyles.input}
-                  onChangeText={formikProps.handleChange("username")}
-                  placeholder="Username"
-                  textContentType="username"
-                  value={formikProps.values.username}
-                  onBlur={formikProps.handleBlur("username")}
-                />
-                <Text style={globalStyles.errorText}>
-                  {formikProps.touched.username && formikProps.errors.username}
-                </Text>
                 <TextInput
                   style={globalStyles.input}
                   onChangeText={formikProps.handleChange("email")}

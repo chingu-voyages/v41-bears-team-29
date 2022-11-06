@@ -15,10 +15,10 @@ import ProfileCard from "../components/card";
 import { globalStyles } from "../styles/global";
 import React, { useContext, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
-import { AuthContext } from "../context/auth";
+import { AuthContext } from "../context/AuthContext";
 
 export default function QuizScreen({ navigation }) {
-  const { currentUser, photo, correctAnswer } = useContext(AuthContext);
+  const { AuthState, AuthDispatch } = useContext(AuthContext);
   const [selectedImage, setSelectedImage] = useState(null);
   let openImagePickerAsync = async () => {
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
@@ -48,7 +48,7 @@ export default function QuizScreen({ navigation }) {
           </View>
         </View>
         <View style={styles.answerContainer}>
-          <Button title={correctAnswer} />
+          <Button title={AuthState.correctAnswer} />
           <Button title="Wrong answer" />
           <Button title="see pictures" onPress={openImagePickerAsync} />
           <Button
