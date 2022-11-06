@@ -1,6 +1,13 @@
 import { Router } from 'express'
 import { validateAuthToken } from '../../middlewares/AuthToken.middleware'
-import { authenticateUser, createUser, getAllUsers, getUser } from '../../controllers/users.controller'
+import {
+  authenticateUser,
+  createUser,
+  getAllUsers,
+  getUser,
+  userSession,
+  deleteUserSession
+} from '../../controllers/users.controller'
 
 const usersRoutes = Router()
 
@@ -13,5 +20,11 @@ usersRoutes.route('/users/:id')
 
 usersRoutes.route('/users/auth')
   .post(authenticateUser)
+
+usersRoutes.route('/users/auth/session')
+  .get(userSession)
+
+usersRoutes.route('/users/auth/logout')
+  .get(validateAuthToken, deleteUserSession)
 
 export default usersRoutes

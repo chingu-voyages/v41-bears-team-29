@@ -15,7 +15,8 @@ const {
   SALT_ROUNDS,
   AUTH_TOKEN_SECRET,
   RESET_PASSWORD_TOKEN_SECRET,
-  COOKIE_SECRET
+  COOKIE_SECRET,
+  URL
 } = process.env
 
 export default {
@@ -31,5 +32,6 @@ export default {
   salt: parseInt(SALT_ROUNDS as string, 10),
   token: AUTH_TOKEN_SECRET,
   resetToken: RESET_PASSWORD_TOKEN_SECRET,
-  cookieSecret: COOKIE_SECRET
+  cookieSecret: COOKIE_SECRET,
+  url: URL
 }

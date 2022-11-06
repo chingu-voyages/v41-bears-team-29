@@ -29,9 +29,10 @@ app.use(morgan('short'))
 app.use(helmet())
 // Open cors for frontend
 app.use(cors({
-  origin: 'http://localhost:19006',
+  origin: 'exp://192.168.8.142:19000',
   credentials: true
 }))
+app.use(express.static('uploads'))
 // Save user credentials in cookie
 app.use(sessionMiddleware)
 // Parse any json data
