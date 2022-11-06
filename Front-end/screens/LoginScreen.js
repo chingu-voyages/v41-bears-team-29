@@ -13,13 +13,6 @@ import { globalStyles } from "../styles/global";
 import React, { useState, useContext, useEffect } from "react";
 import MenuBtn from "../components/menuBtn";
 import { AuthContext } from "../context/auth";
-import Clarifai from "../Api/Clarifai";
-
-const clarifai = new Clarifai(
-  "w55zqbb8z4wu",
-  "91fbf60c37ec4e22a53ad82cfda631ba",
-  "what-is-that"
-);
 
 export default function LoginScreen({ navigation }) {
   const { users, setCurrentUser } = useContext(AuthContext);
@@ -28,19 +21,6 @@ export default function LoginScreen({ navigation }) {
     navigation.navigate("Capture");
     setCurrentUser(profile);
   };
-
-  useEffect(() => {
-    clarifai
-      .predictByUrl(
-        "https://www.aram.co.uk/media/catalog/product/cache/2edc4d78edeeaa2cce5e9c6f1dd0dbec/m/r/mr-chair-with-arms_mies-van-der-rohe_bigla-1-1200.jpg"
-      )
-      .then((data) => {
-        console.log(data, "from login");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
