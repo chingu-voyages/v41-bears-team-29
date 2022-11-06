@@ -84,6 +84,41 @@ export const createUser = async (
     next(error)
   }
 }
+export const userSession = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const { user } = request.session
+    if (user) {
+      response.status(200).json({
+        status: 'Success',
+        data: { ...user },
+        message: 'User session got retrieved successfully'
+      })
+      return
+    }
+  } catch (error) {
+
+  }
+}
+
+export const deleteUserSession = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    request.session.user = null
+    response.status(202).json({
+      status: 'Success',
+      message: 'User session got deleted successfully'
+    })
+  } catch (error) {
+    next(error)
+  }
+}
 
 export const authenticateUser = async (
   request: Request,
