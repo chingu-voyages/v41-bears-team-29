@@ -9,7 +9,8 @@ import RegisterScreen from "./screens/RegisterScreen";
 import ScoreScreen from "./screens/ScoreScreen";
 import StartingScreen from "./screens/StartingScreen";
 import SignInScreen from "./screens/SignInScreen";
-import { AuthProvider } from "./context/auth";
+// import { AuthProvider } from "./context/auth";
+import AuthContextProvider from './context/AuthContext'
 import { useFonts } from "expo-font";
 
 const Stack = createNativeStackNavigator();
@@ -31,10 +32,9 @@ export default function App() {
   }
   return (
     <NavigationContainer>
-      <AuthProvider>
-        <Stack.Navigator initialRouteName="Login">
+      <AuthContextProvider>
+        <Stack.Navigator initialRouteName="Starting">
           <Stack.Screen name="Starting" component={StartingScreen} />
-
           <Stack.Screen name="SignIn" component={SignInScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
@@ -43,7 +43,7 @@ export default function App() {
           <Stack.Screen name="Score" component={ScoreScreen} />
           <Stack.Screen name="ProfileAdmin" component={ProfileAdminScreen} />
         </Stack.Navigator>
-      </AuthProvider>
+      </AuthContextProvider>
     </NavigationContainer>
   );
 }

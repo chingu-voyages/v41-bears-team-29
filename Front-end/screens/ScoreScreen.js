@@ -16,8 +16,7 @@ import GoBackBtn from "../components/goBackBtn";
 import { AuthContext } from "../context/auth";
 
 export default function ScoreScreen({ navigation }) {
-  const { users, setUser, setCurrentUser, currentUser } =
-    useContext(AuthContext);
+  const { AuthState,AuthDispatch } = useContext(AuthContext);
 
   const [score, setScore] = useState([
     {

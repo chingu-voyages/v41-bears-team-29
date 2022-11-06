@@ -5,6 +5,8 @@ dotenv.config()
 const {
   PORT,
   ENV,
+  REDIS_SERVER,
+  REDIS_PORT,
   POSTGRES_HOST,
   POSTGRES_PORT,
   POSTGRES_DATABASE,
@@ -22,6 +24,8 @@ const {
 export default {
   port: parseInt(PORT as string, 10),
   env: ENV,
+  redis_server: REDIS_SERVER,
+  redis_port: REDIS_PORT,
   postgres_host: POSTGRES_HOST,
   postgres_port: parseInt(POSTGRES_PORT as string, 10),
   postgres_database: POSTGRES_DATABASE,
