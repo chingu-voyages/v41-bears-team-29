@@ -13,27 +13,25 @@ import {
 import { globalStyles } from "../styles/global";
 import bgImage from "../assets/img/bg40.jpg";
 import React, { useContext, useState } from "react";
-import { AuthContext } from "../context/auth";
+import { AuthContext } from "../context/AuthContext";
+import GoBackBtn from "../components/goBackBtn";
+import UsersEndpoints from '../Api/Users'
 import { Formik } from "formik";
 import * as yup from "yup";
-import GoBackBtn from "../components/goBackBtn";
+
+const usersEndpoints = new UsersEndpoints()
 
 const ownersSchema = yup.object({
   username: yup.string().required().min(4),
   email: yup.string().email().required(),
   password: yup.string().required().min(4),
-  confirmPassword: yup.string().required().min(4),
+  confirmPassword: yup.string().required('Confirm password is required field').oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
 
 export default function RegisterScreen({ navigation, display }) {
-  const { owners, setOwners } = useContext(AuthContext);
+  const { AuthState, AuthDispatch } = useContext(AuthContext);
+  const [errorMsg, setErrorMsg] = useState('')
 
-  const addNewOwner = (newOwner) => {
-    newOwner.key = Math.random().toString();
-    setOwners((currentOwners) => {
-      return [newOwner, ...currentOwners];
-    });
-  };
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <TouchableOpacity onPress={() => navigation.navigate("Starting")}>
@@ -55,12 +53,23 @@ export default function RegisterScreen({ navigation, display }) {
             }}
             validationSchema={ownersSchema}
             onSubmit={(values, actions) => {
-              addNewOwner(values);
+              usersEndpoints.createUser(values.username, values.email, values.password)
+                .then(data=>{
+                  AuthDispatch({type:'update_user', payload: data})
+                  console.log(data)
+                  navigation.navigate('Login')
+                })
+                .catch(error =>{
+                  console.log(error)
+                  setErrorMsg(error.response.data.message)
+                  AuthDispatch({type: 'reset_all'})
+                })
               actions.resetForm();
             }}
           >
             {(formikProps) => (
               <View>
+                <Text style={globalStyles.errorText}>{errorMsg}</Text>
                 <TextInput
                   style={globalStyles.input}
                   onChangeText={formikProps.handleChange("username")}
@@ -101,10 +110,10 @@ export default function RegisterScreen({ navigation, display }) {
                   placeholder="Confirm Password"
                   secureTextEntry={true}
                   value={formikProps.values.confirmPassword}
-                  onBlur={formikProps.handleBlur("password")}
+                  onBlur={formikProps.handleBlur("confirmPassword")}
                 />
                 <Text style={globalStyles.errorText}>
-                  {formikProps.touched.password && formikProps.errors.password}
+                  {formikProps.touched.confirmPassword && formikProps.errors.confirmPassword}
                 </Text>
                 <View style={globalStyles.RegisterToSigninContainer}>
                   <Text>Have an account?</Text>
@@ -137,5 +146,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  },
+  }
 });

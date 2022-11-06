@@ -15,7 +15,7 @@ import CameraBtn from "../components/cameraBtn";
 import ProfileCard from "../components/card";
 import { globalStyles } from "../styles/global";
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { AuthContext } from "../context/auth";
+import { AuthContext } from "../context/AuthContext";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import Clarifai from "../Api/Clarifai";
@@ -27,8 +27,7 @@ const clarifai = new Clarifai(
 );
 
 export default function CaptureScreen({ navigation }) {
-  const { currentUser, photo, setPhoto, setCorrectAnswer } =
-    useContext(AuthContext);
+  const { AuthState, AuthDispatch } = useContext(AuthContext);
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [isCamera, setIsCamera] = useState(true);
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
@@ -63,15 +62,15 @@ export default function CaptureScreen({ navigation }) {
       exif: false,
     };
     let newPhoto = await cameraRef.current.takePictureAsync(options);
-    setPhoto(newPhoto);
+    AuthDispatch({type: 'update_photo', payload: newPhoto})
 
     clarifai
       .predictByBytes(newPhoto.base64)
       .then((data) => {
         console.log(data);
         // console.log(data.regions[0].data.concepts[0].name);
-
-        setCorrectAnswer(data.regions[0].data.concepts[0].name);
+        AuthDispatch({type: 'update_correct_answer', payload:data.regions[0].data.concepts[0].name })
+        // setCorrectAnswer(data.regions[0].data.concepts[0].name);
       })
       .catch((error) => {
         console.log(error);
@@ -81,7 +80,8 @@ export default function CaptureScreen({ navigation }) {
 
   const retake = () => {
     setIsCamera(true);
-    setPhoto(undefined);
+    // setPhoto(undefined);
+    AuthDispatch({type: 'reset_photo'})
   };
 
   return (

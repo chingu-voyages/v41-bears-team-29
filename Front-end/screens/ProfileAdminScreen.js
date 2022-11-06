@@ -16,11 +16,11 @@ import React, { useState, useContext } from "react";
 import Addprofile from "../components/addProfile";
 import GoBackBtn from "../components/goBackBtn";
 import * as ImagePicker from "expo-image-picker";
-import { AuthContext } from "../context/auth";
+import { AuthContext } from "../context/AuthContext";
 
 export default function ProfileAdminScreen({ navigation }) {
-  const { users, setUsers } = useContext(AuthContext);
-
+  const { AuthState, AuthDispatch } = useContext(AuthContext);
+  const [users, setUsers] = useState([])
   const [selectedImage, setSelectedImage] = useState(null);
   const [newUser, setNewUser] = useState("");
 
