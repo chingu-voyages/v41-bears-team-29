@@ -1,15 +1,16 @@
 import axios from 'axios'
 
 export default class ObjectsEndpoints {
-  constructor() {
+  constructor(token) {
     this.config = {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       withCredentials: true,
       signal: null
     }
   }
 
   async createObject(name, kidId, image) {
+    this.config.headers['Content-Type'] = 'multipart/form-data'
     const response = await axios.post(
       `http://10.0.2.2:4000/api/objects`,
       { name, kidId, image },

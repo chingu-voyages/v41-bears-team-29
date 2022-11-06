@@ -1,15 +1,16 @@
 import axios from 'axios'
 
 export default class KidsEndpoints {
-  constructor() {
+  constructor(token) {
     this.config = {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       withCredentials: true,
       signal: null
     }
   }
 
   async createKid(name, userId, image) {
+    this.config.headers['Content-Type'] = 'multipart/form-data'
     const response = await axios.post(
       'http://10.0.2.2:4000/api/kids',
       { name, userId, image },
@@ -37,6 +38,7 @@ export default class KidsEndpoints {
   }
 
   async updateKid(kidId, name, image){
+    this.config.headers['Content-Type'] = 'multipart/form-data'
     const response = await axios.put(
       `http://10.0.2.2:4000/api/kids/user/${kidId}`,
       {name, image},
