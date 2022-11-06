@@ -60,8 +60,12 @@ export default class Clarifai {
    */
   predictByBytes = async (
     imageBytes,
-    modelId = "general-image-recognition",
-    modelVersionId = "aa7f35c01e0642fda5cf400f543e7c40"
+    // modelId = "general-image-recognition",//1
+    modelId = "general-image-detection", //2
+
+    // modelVersionId = "aa7f35c01e0642fda5cf400f543e7c40"//1
+    modelVersionId = "3df9e7b5c0f74a369919f6c0227afa08" //2
+    // modelVersionId = "4ed6524163274eb0bb5533ea1919a6e0" //our own version
   ) => {
     const response = await axios.post(
       `https://api.clarifai.com/v2/models/${modelId}/versions/${modelVersionId}/outputs`,

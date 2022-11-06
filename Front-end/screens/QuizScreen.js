@@ -13,11 +13,21 @@ import bgImage from "../assets/img/bg40.jpg";
 import GoBackBtn from "../components/goBackBtn";
 import ProfileCard from "../components/card";
 import { globalStyles } from "../styles/global";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import * as ImagePicker from "expo-image-picker";
 import { AuthContext } from "../context/auth";
 
 export default function QuizScreen({ navigation }) {
-  const { currentUser, photo } = useContext(AuthContext);
+  const { currentUser, photo, correctAnswer } = useContext(AuthContext);
+  const [selectedImage, setSelectedImage] = useState(null);
+  let openImagePickerAsync = async () => {
+    let pickerResult = await ImagePicker.launchImageLibraryAsync();
+    if (pickerResult.cancelled === true) {
+      return;
+    }
+    setSelectedImage({ localUri: pickerResult.uri });
+  };
+
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
@@ -26,16 +36,19 @@ export default function QuizScreen({ navigation }) {
             <GoBackBtn />
           </TouchableOpacity>
           <SafeAreaView style={styles.photoContainer}>
-            <Text>{JSON.stringify(photo)}</Text>
+            <Image
+              source={{ uri: "data:image/jpg;base64," + photo.base64 }}
+              style={styles.preview}
+            />
           </SafeAreaView>
           <View style={globalStyles.profileIcon}>
             {/* <ProfileCard user={currentUser} /> */}
           </View>
         </View>
         <View style={styles.answerContainer}>
+          <Button title={correctAnswer} />
           <Button title="Wrong answer" />
-          <Button title="Wrong answer" />
-          <Button title="Wrong right" />
+          <Button title="see pictures" onPress={openImagePickerAsync} />
           <Button
             title="go to Score"
             onPress={() => navigation.navigate("Score")}
@@ -51,14 +64,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 20,
-    gap: 10,
   },
   photoContainer: {
-    width: 600,
-    height: 400,
+    width: 200,
     borderWidth: 2,
   },
   body: {
+    flex: 2,
     flexDirection: "row",
     justifyContent: "space-between",
     width: "100%",
@@ -66,6 +78,11 @@ const styles = StyleSheet.create({
   },
   answerContainer: {
     flexDirection: "row",
-    gap: 10,
+    width: "100%",
+    justifyContent: "space-evenly",
+  },
+  preview: {
+    alignSelf: "stretch",
+    flex: 1,
   },
 });

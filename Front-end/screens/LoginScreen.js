@@ -35,7 +35,7 @@ export default function LoginScreen({ navigation }) {
         "https://www.aram.co.uk/media/catalog/product/cache/2edc4d78edeeaa2cce5e9c6f1dd0dbec/m/r/mr-chair-with-arms_mies-van-der-rohe_bigla-1-1200.jpg"
       )
       .then((data) => {
-        console.log(data);
+        console.log(data, "from login");
       })
       .catch((error) => {
         console.log(error);

@@ -32,7 +32,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <Stack.Navigator initialRouteName="Starting">
+        <Stack.Navigator initialRouteName="Login">
           <Stack.Screen name="Starting" component={StartingScreen} />
 
           <Stack.Screen name="SignIn" component={SignInScreen} />

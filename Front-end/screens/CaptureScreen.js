@@ -6,6 +6,7 @@ import {
   Button,
   ImageBackground,
   TouchableOpacity,
+  Image,
   Alert,
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
@@ -17,14 +18,23 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../context/auth";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
+import Clarifai from "../Api/Clarifai";
+
+const clarifai = new Clarifai(
+  "w55zqbb8z4wu",
+  "91fbf60c37ec4e22a53ad82cfda631ba",
+  "what-is-that"
+);
 
 export default function CaptureScreen({ navigation }) {
-  const { currentUser, photo, setPhoto } = useContext(AuthContext);
+  const { currentUser, photo, setPhoto, setCorrectAnswer } =
+    useContext(AuthContext);
   const [hasCameraPermission, setHasCameraPermission] = useState();
+  const [isCamera, setIsCamera] = useState(true);
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [showCamera, setShowCamera] = useState(true);
-  const [newPhoto, setNewPhoto] = useState(null);
-  let cameraRef = useRef(null);
+  // const [photo, setPhoto] = useState();
+  let cameraRef = useRef();
 
   useEffect(() => {
     (async () => {
@@ -46,20 +56,32 @@ export default function CaptureScreen({ navigation }) {
     );
   }
 
-  const takePic = async () => {
-    if (cameraRef) {
-      try {
-        let newPic = await cameraRef.current.takePictureAsync({
-          allowEditing: true,
-          aspect: [6, 8],
-          quality: 1,
-        });
-        setNewPhoto(newPic.uri);
-        return newPic;
-      } catch (e) {
-        console.log(e);
-      }
-    }
+  let takePic = async () => {
+    let options = {
+      quality: 1,
+      base64: true,
+      exif: false,
+    };
+    let newPhoto = await cameraRef.current.takePictureAsync(options);
+    setPhoto(newPhoto);
+
+    clarifai
+      .predictByBytes(newPhoto.base64)
+      .then((data) => {
+        console.log(data);
+        // console.log(data.regions[0].data.concepts[0].name);
+
+        setCorrectAnswer(data.regions[0].data.concepts[0].name);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    setIsCamera(false);
+  };
+
+  const retake = () => {
+    setIsCamera(true);
+    setPhoto(undefined);
   };
 
   return (
@@ -69,23 +91,23 @@ export default function CaptureScreen({ navigation }) {
           <GoBackBtn />
         </TouchableOpacity>
         <View styles={styles.cameraContainer}>
-          <Camera style={styles.camera} ref={cameraRef}></Camera>
+          {isCamera && <Camera style={styles.camera} ref={cameraRef}></Camera>}
+          {!isCamera && (
+            <Image
+              style={styles.camera}
+              source={{ uri: "data:image/jpg;base64," + photo.base64 }}
+            />
+          )}
         </View>
         <View style={styles.rightColumn}>
-          <View style={globalStyles.profileIcon}>
-            {/* <ProfileCard user={currentUser} /> */}
-          </View>
-          <TouchableOpacity
-            onPress={async () => {
-              const r = await takePic();
-              Alert.alert("debug", JSON.stringify(r));
-              setPhoto(r.uri);
-            }}
-          >
+          <TouchableOpacity onPress={takePic}>
             <CameraBtn />
           </TouchableOpacity>
+          {/* <View style={globalStyles.profileIcon}> */}
+          {/* <ProfileCard user={currentUser} /> */}
+          {/* </View> */}
 
-          <Button title="retake" onPress={() => setShowCamera(true)} />
+          <Button title="retake" onPress={retake} />
           <Button
             title="go to Choosing"
             onPress={() => navigation.navigate("Choosing")}
@@ -105,18 +127,23 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   rightColumn: {
+    flex: 1,
     height: "100%",
     justifyContent: "space-between",
   },
   cameraContainer: {
-    padding: 2,
-    margin: 10,
+    flex: 5,
     borderWidth: 2,
     borderColor: "blue",
   },
   camera: {
     borderWidth: 2,
-    width: 800,
+    width: 400,
     height: "100%",
+  },
+  preview: {
+    width: 300,
+    height: 300,
+    borderWidth: 3,
   },
 });
