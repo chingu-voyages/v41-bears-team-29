@@ -1,4 +1,5 @@
 node_modules/
+APK/
 .expo/
 dist/
 npm-debug.*

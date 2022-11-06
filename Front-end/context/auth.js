@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
     photo: "",
     id: "",
   });
+  const [correctAnswer, setCorrectAnswer] = useState("CORRECT");
   const [owners, setOwners] = useState([]);
   const [users, setUsers] = useState([
     {
@@ -58,6 +59,8 @@ const AuthProvider = ({ children }) => {
         setPhoto,
         owners,
         setOwners,
+        correctAnswer,
+        setCorrectAnswer,
       }}
     >
       {children}
