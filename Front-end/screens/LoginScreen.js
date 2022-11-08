@@ -26,7 +26,7 @@ export default function LoginScreen({ navigation }) {
 
   const onPressProfileHandler = (profile) => {
     navigation.navigate("Capture");
-    AuthDispatch({type: 'update_user', payload: profile})
+    AuthDispatch({ type: "update_user", payload: profile });
   };
 
   return (
