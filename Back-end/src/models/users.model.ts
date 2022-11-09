@@ -46,7 +46,6 @@ export class UsersModel {
                    WHERE email = $1`
       const results = await connect.query(sql, [email])
       connect.release()
-      console.log(results.rows)
       if (results.rows.length) {
         return results.rows[0]
       } else {
