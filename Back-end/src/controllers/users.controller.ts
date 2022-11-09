@@ -64,7 +64,7 @@ export const createUser = async (
   try {
     const { username, email, password } = request.body
     const newUser = { username, email: email.toLowerCase(), image: `${config.url}/person.svg`, password }
-    const checkEmail = await usersModel.showByEmail(email)
+    const checkEmail = await usersModel.showByEmail(email.toLowerCase())
     if (checkEmail) {
       response.status(409).json({
         status: 'Failed',

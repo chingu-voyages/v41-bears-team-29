@@ -12,7 +12,7 @@ import SignInScreen from "../screens/SignInScreen";
 const RootStack = createNativeStackNavigator();
 const RootNavigator = () => {
   return (
-    <RootStack.Navigator initialRouteName="Login">
+    <RootStack.Navigator initialRouteName="SignIn">
       <RootStack.Group
         screenOptions={{
           headerShown: false,
