@@ -26,7 +26,7 @@ export default function LoginScreen({ navigation }) {
 
   const onPressProfileHandler = (profile) => {
     navigation.navigate("Capture");
-    AuthDispatch({ type: "update_user", payload: profile });
+    AuthDispatch({ type: "update_active_kid", payload: profile });
   };
 
   return (
@@ -39,6 +39,7 @@ export default function LoginScreen({ navigation }) {
           <Text style={globalStyles.appName}>What's that?!</Text>
         </View>
         <Text style={globalStyles.headerTitle}>Who is ready to play?</Text>
+        {/* <Text style={globalStyles.headerTitle}>{AuthState.user.username}</Text> */}
         <View style={globalStyles.userList}>
           <FlatList
             keyExtractor={(user) => user.id}

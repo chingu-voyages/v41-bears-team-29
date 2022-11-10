@@ -20,7 +20,7 @@ import { AuthContext } from "../context/AuthContext";
 
 export default function ProfileAdminScreen({ navigation }) {
   const { AuthState, AuthDispatch } = useContext(AuthContext);
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [newUser, setNewUser] = useState("");
 
@@ -37,27 +37,28 @@ export default function ProfileAdminScreen({ navigation }) {
       return prevUsers.filter((user) => user.id !== id);
     });
   };
-  const changeHandler = (val) => {
-    setNewUser(val);
-  };
-  const submitHandle = (newUser) => {
-    if (newUser.length >= 3) {
-      setUsers((prevUsers) => {
-        return [
-          {
-            name: newUser,
-            photo: { uri: selectedImage.localUri },
-            id: Math.random().toString(),
-          },
-          ...prevUsers,
-        ];
-      });
-    } else {
-      Alert.alert("OOPS!", "New name most be over 3 chars long", [
-        { text: "Understood", onPress: () => console.log("alert closed") },
-      ]);
-    }
-  };
+  // const changeHandler = (val) => {
+  //   setNewUser(val);
+  // };
+  // const submitHandle = (newUser) => {
+  //   if (newUser.length >= 3) {
+  //     AuthDispatch({ type: "add_new_kid" });
+  //     // setUsers((prevUsers) => {
+  //     //   return [
+  //     //     {
+  //     //       name: newUser,
+  //     //       photo: { uri: selectedImage.localUri },
+  //     //       id: Math.random().toString(),
+  //     //     },
+  //     //     ...prevUsers,
+  //     //   ];
+  //     // });
+  //   } else {
+  //     Alert.alert("OOPS!", "New name most be over 3 chars long", [
+  //       { text: "Understood", onPress: () => console.log("alert closed") },
+  //     ]);
+  //   }
+  // };
 
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
@@ -71,15 +72,13 @@ export default function ProfileAdminScreen({ navigation }) {
         <Text style={styles.newPlayer}>New Player</Text>
         <Addprofile
           newUser={newUser}
-          changeHandler={changeHandler}
-          submitHandle={submitHandle}
           openImagePickerAsync={openImagePickerAsync}
         />
         <View style={globalStyles.userList}>
           <FlatList
             keyExtractor={(user) => user.id}
             horizontal={true}
-            data={users}
+            data={AuthState.user.kids}
             renderItem={({ item }) => (
               <Card item={item} deleteUserHandler={deleteUserHandler} />
             )}

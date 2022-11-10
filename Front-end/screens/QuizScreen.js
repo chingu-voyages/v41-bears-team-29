@@ -36,7 +36,7 @@ export default function QuizScreen({ navigation }) {
             <GoBackBtn />
           </TouchableOpacity>
           <SafeAreaView style={styles.photoContainer}>
-            {photo && (
+            {AuthState && (
               <Image
                 source={{ uri: "data:image/jpg;base64," + photo.base64 }}
                 style={styles.preview}

@@ -8,12 +8,12 @@ import {
 } from "react-native";
 
 export default function Card({ item }) {
-  const { name, photo, type } = item;
+  const { name, image } = item;
   return (
     <View
-      style={type === "user" ? styles.containerUser : styles.containerAnswer}
+      style={type === "player" ? styles.containerUser : styles.containerAnswer}
     >
-      <Image style={styles.profilePhoto} source={photo} />
+      <Image style={styles.profilePhoto} source={image} />
       <Text style={styles.profileName}>{name}</Text>
     </View>
   );

@@ -15,11 +15,11 @@ import bgImage from "../assets/img/bg40.jpg";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import GoBackBtn from "../components/goBackBtn";
-import UsersEndpoints from '../Api/Users'
+import UsersEndpoints from "../Api/Users";
 import { Formik } from "formik";
 import * as yup from "yup";
 
-const userEndpoints = new UsersEndpoints()
+const userEndpoints = new UsersEndpoints();
 
 const ownersSchema = yup.object({
   email: yup.string().email().required(),
@@ -27,7 +27,8 @@ const ownersSchema = yup.object({
 });
 
 export default function SignInScreen({ navigation, display }) {
-  const {AuthDispatch} = useContext(AuthContext)
+  const { AuthDispatch } = useContext(AuthContext);
+  const [error, setError] = useState("");
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <TouchableOpacity onPress={() => navigation.navigate("Starting")}>
@@ -45,19 +46,24 @@ export default function SignInScreen({ navigation, display }) {
             }}
             validationSchema={ownersSchema}
             onSubmit={(values, actions) => {
-              userEndpoints.authUser(values.email, values.password)
-                .then(data =>{
-                  AuthDispatch({type:'update_user', payload: data})
-                  navigation.navigate('Login')
+              userEndpoints
+                .authUser(values.email, values.password)
+                .then((data) => {
+                  AuthDispatch({ type: "update_user", payload: data });
+                  navigation.navigate("Login");
+                  console.log(data);
                 })
-                .catch(error =>{
-                  AuthDispatch({type: 'reset_all'})
-                })
+                .catch((error) => {
+                  AuthDispatch({ type: "reset_all" });
+                  console.log(error);
+                  setError(error.response.data.message);
+                });
               actions.resetForm();
             }}
           >
             {(formikProps) => (
               <View>
+                <Text>{error}</Text>
                 <TextInput
                   style={globalStyles.input}
                   onChangeText={formikProps.handleChange("email")}

@@ -9,28 +9,32 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 import { globalStyles } from "../styles/global";
 import bgImage from "../assets/img/bg40.jpg";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import GoBackBtn from "../components/goBackBtn";
-import UsersEndpoints from '../Api/Users'
+import UsersEndpoints from "../Api/Users";
 import { Formik } from "formik";
 import * as yup from "yup";
 
-const usersEndpoints = new UsersEndpoints()
+const usersEndpoints = new UsersEndpoints();
 
 const ownersSchema = yup.object({
   username: yup.string().required().min(4),
   email: yup.string().email().required(),
   password: yup.string().required().min(4),
-  confirmPassword: yup.string().required('Confirm password is required field').oneOf([yup.ref('password'), null], 'Passwords must match'),
+  confirmPassword: yup
+    .string()
+    .required("Confirm password is required field")
+    .oneOf([yup.ref("password"), null], "Passwords must match"),
 });
 
 export default function RegisterScreen({ navigation, display }) {
   const { AuthState, AuthDispatch } = useContext(AuthContext);
-  const [errorMsg, setErrorMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState("");
 
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
@@ -38,104 +42,110 @@ export default function RegisterScreen({ navigation, display }) {
         <GoBackBtn />
       </TouchableOpacity>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <Text>Welcome to</Text>
-          <Text style={globalStyles.appName}>What's that?!</Text>
-          <Text>
-            Please register to start playing with this incredible game
-          </Text>
-          <Formik
-            initialValues={{
-              username: "",
-              email: "",
-              password: "",
-              confirmPassword: "",
-            }}
-            validationSchema={ownersSchema}
-            onSubmit={(values, actions) => {
-              usersEndpoints.createUser(values.username, values.email, values.password)
-                .then(data=>{
-                  AuthDispatch({type:'update_user', payload: data})
-                  console.log(data)
-                  navigation.navigate('Login')
-                })
-                .catch(error =>{
-                  console.log(error)
-                  setErrorMsg(error.response.data.message)
-                  AuthDispatch({type: 'reset_all'})
-                })
-              actions.resetForm();
-            }}
-          >
-            {(formikProps) => (
-              <View>
-                <Text style={globalStyles.errorText}>{errorMsg}</Text>
-                <TextInput
-                  style={globalStyles.input}
-                  onChangeText={formikProps.handleChange("username")}
-                  placeholder="Username"
-                  textContentType="username"
-                  value={formikProps.values.username}
-                  onBlur={formikProps.handleBlur("username")}
-                />
-                <Text style={globalStyles.errorText}>
-                  {formikProps.touched.username && formikProps.errors.username}
-                </Text>
-                <TextInput
-                  style={globalStyles.input}
-                  onChangeText={formikProps.handleChange("email")}
-                  placeholder="Email"
-                  keyboardType="email-address"
-                  textContentType="emailAddress"
-                  value={formikProps.values.email}
-                  onBlur={formikProps.handleBlur("email")}
-                />
-                <Text style={globalStyles.errorText}>
-                  {formikProps.touched.email && formikProps.errors.email}
-                </Text>
-                <TextInput
-                  style={globalStyles.input}
-                  onChangeText={formikProps.handleChange("password")}
-                  placeholder="Password"
-                  secureTextEntry={true}
-                  value={formikProps.values.password}
-                  onBlur={formikProps.handleBlur("password")}
-                />
-                <Text style={globalStyles.errorText}>
-                  {formikProps.touched.password && formikProps.errors.password}
-                </Text>
-                <TextInput
-                  style={globalStyles.input}
-                  onChangeText={formikProps.handleChange("confirmPassword")}
-                  placeholder="Confirm Password"
-                  secureTextEntry={true}
-                  value={formikProps.values.confirmPassword}
-                  onBlur={formikProps.handleBlur("confirmPassword")}
-                />
-                <Text style={globalStyles.errorText}>
-                  {formikProps.touched.confirmPassword && formikProps.errors.confirmPassword}
-                </Text>
-                <View style={globalStyles.RegisterToSigninContainer}>
-                  <Text>Have an account?</Text>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate("SignIn")}
-                  >
-                    <Text>Sign in</Text>
-                  </TouchableOpacity>
+        <ScrollView>
+          <View style={styles.container}>
+            <Text>Welcome to</Text>
+            <Text style={globalStyles.appName}>What's that?!</Text>
+            <Text>
+              Please register to start playing with this incredible game
+            </Text>
+            <Formik
+              initialValues={{
+                username: "",
+                email: "",
+                password: "",
+                confirmPassword: "",
+              }}
+              validationSchema={ownersSchema}
+              onSubmit={(values, actions) => {
+                usersEndpoints
+                  .createUser(values.username, values.email, values.password)
+                  .then((data) => {
+                    console.log(data);
+                    AuthDispatch({ type: "update_user", payload: data });
+                    navigation.navigate("Login");
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                    setErrorMsg(error.response.data.message);
+                    AuthDispatch({ type: "reset_all" });
+                  });
+                actions.resetForm();
+              }}
+            >
+              {(formikProps) => (
+                <View>
+                  <Text style={globalStyles.errorText}>{errorMsg}</Text>
+                  <TextInput
+                    style={globalStyles.input}
+                    onChangeText={formikProps.handleChange("username")}
+                    placeholder="Username"
+                    textContentType="username"
+                    value={formikProps.values.username}
+                    onBlur={formikProps.handleBlur("username")}
+                  />
+                  <Text style={globalStyles.errorText}>
+                    {formikProps.touched.username &&
+                      formikProps.errors.username}
+                  </Text>
+                  <TextInput
+                    style={globalStyles.input}
+                    onChangeText={formikProps.handleChange("email")}
+                    placeholder="Email"
+                    keyboardType="email-address"
+                    textContentType="emailAddress"
+                    value={formikProps.values.email}
+                    onBlur={formikProps.handleBlur("email")}
+                  />
+                  <Text style={globalStyles.errorText}>
+                    {formikProps.touched.email && formikProps.errors.email}
+                  </Text>
+                  <TextInput
+                    style={globalStyles.input}
+                    onChangeText={formikProps.handleChange("password")}
+                    placeholder="Password"
+                    secureTextEntry={true}
+                    value={formikProps.values.password}
+                    onBlur={formikProps.handleBlur("password")}
+                  />
+                  <Text style={globalStyles.errorText}>
+                    {formikProps.touched.password &&
+                      formikProps.errors.password}
+                  </Text>
+                  <TextInput
+                    style={globalStyles.input}
+                    onChangeText={formikProps.handleChange("confirmPassword")}
+                    placeholder="Confirm Password"
+                    secureTextEntry={true}
+                    value={formikProps.values.confirmPassword}
+                    onBlur={formikProps.handleBlur("confirmPassword")}
+                  />
+                  <Text style={globalStyles.errorText}>
+                    {formikProps.touched.confirmPassword &&
+                      formikProps.errors.confirmPassword}
+                  </Text>
+                  <View style={globalStyles.RegisterToSigninContainer}>
+                    <Text>Have an account?</Text>
+                    <TouchableOpacity
+                      onPress={() => navigation.navigate("SignIn")}
+                    >
+                      <Text>Sign in</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <Button
+                    title="Create an account"
+                    onPress={formikProps.handleSubmit}
+                  />
                 </View>
-                <Button
-                  title="Create an account"
-                  onPress={formikProps.handleSubmit}
-                />
-              </View>
-            )}
-          </Formik>
+              )}
+            </Formik>
 
-          <Button
-            title="Go to your profile"
-            onPress={() => navigation.navigate("Login")}
-          />
-        </View>
+            <Button
+              title="Go to your profile"
+              onPress={() => navigation.navigate("Login")}
+            />
+          </View>
+        </ScrollView>
       </TouchableWithoutFeedback>
     </ImageBackground>
   );
@@ -146,5 +156,5 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-  }
+  },
 });

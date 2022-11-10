@@ -12,52 +12,6 @@ function AuthContextProvider({ children }) {
     defaultAuthContextState,
     init
   );
-  const [currentUser, setCurrentUser] = useState({
-    name: "",
-    photo: "",
-    id: "",
-  });
-  const [correctAnswer, setCorrectAnswer] = useState("CORRECT");
-  const [owners, setOwners] = useState([]);
-  const [users, setUsers] = useState([
-    {
-      name: "Tom",
-      photo: require("../assets/img/profilePhoto.jpg"),
-      id: "1",
-      score: [{}],
-      type: "user",
-    },
-    {
-      name: "Alise",
-      photo: require("../assets/img/profilePhoto2.jpg"),
-      id: "2",
-      score: [{}],
-      type: "user",
-    },
-    {
-      name: "Elliot",
-      photo: require("../assets/img/profilePhoto3.jpg"),
-      id: "3",
-      score: [{}],
-      type: "user",
-    },
-    {
-      name: "Dany",
-      photo: require("../assets/img/profilePhoto4.jpg"),
-      id: "4",
-      score: [{}],
-      type: "user",
-    },
-    {
-      name: "Jorge",
-      photo: require("../assets/img/profilePhoto3.jpg"),
-      id: "5",
-      score: [{}],
-      type: "user",
-    },
-  ]);
-
-  const [photo, setPhoto] = useState();
 
   useEffect(() => {
     const controller = new AbortController();
@@ -77,22 +31,7 @@ function AuthContextProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{
-        AuthState,
-        AuthDispatch,
-        currentUser,
-        setCurrentUser,
-        users,
-        setUsers,
-        photo,
-        setPhoto,
-        owners,
-        setOwners,
-        correctAnswer,
-        setCorrectAnswer,
-      }}
-    >
+    <AuthContext.Provider value={{ AuthState, AuthDispatch }}>
       {children}
     </AuthContext.Provider>
   );
