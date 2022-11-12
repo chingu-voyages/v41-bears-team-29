@@ -41,12 +41,12 @@ export class UsersModel {
   async showByEmail(email: string): Promise<User | null> {
     try {
       const connect = await database.connect()
-      const sql = `SELECT
+      const sql = `SELECT id, email, username, image
                    FROM users
                    WHERE email = $1`
       const results = await connect.query(sql, [email])
       connect.release()
-      if (results.rows.length) {
+      if (results.rows.length > 0) {
         return results.rows[0]
       } else {
         return null

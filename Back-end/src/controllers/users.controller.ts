@@ -63,8 +63,13 @@ export const createUser = async (
 ): Promise<void> => {
   try {
     const { username, email, password } = request.body
-    const newUser = { username, email: email.toLowerCase(), image: `${config.url}/person.svg`, password }
-    const checkEmail = await usersModel.showByEmail(email)
+    const newUser = {
+      username,
+      email: email.toLowerCase(),
+      image: `${config.url}/person.svg`,
+      password
+    }
+    const checkEmail = await usersModel.showByEmail(email.toLowerCase())
     if (checkEmail) {
       response.status(409).json({
         status: 'Failed',
@@ -99,9 +104,7 @@ export const userSession = async (
       })
       return
     }
-  } catch (error) {
-
-  }
+  } catch (error) {}
 }
 
 export const deleteUserSession = async (
@@ -128,8 +131,10 @@ export const authenticateUser = async (
   try {
     const { email, password } = request.body
     const checkEmail = await usersModel.showByEmail(email.toLowerCase())
+    console.log(checkEmail, 'checkemail')
     if (checkEmail) {
       const authenticatedUser = await usersModel.authenticate(email.toLowerCase(), password)
+      console.log(authenticatedUser, 'auth')
       if (!authenticatedUser) {
         response.status(401).json({
           status: 'Failed',
@@ -139,6 +144,7 @@ export const authenticateUser = async (
       } else {
         const token = jwt.sign({ user: authenticatedUser }, config.token as string)
         const kids = await kidsModel.showByUser(authenticatedUser.id as string)
+        console.log(kids, 'kids')
         request.session.user = { ...authenticatedUser, token }
         response.status(200).json({
           status: 'Success',

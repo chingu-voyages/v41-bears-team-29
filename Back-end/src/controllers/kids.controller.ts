@@ -102,24 +102,27 @@ export const createKid = async (
         return
       }
     })
-    form.on('fileBegin', (name, file) => {
-      const filePath = `${file.originalFilename}`
-      kid.image = `${config.url}/${filePath}`
-      file.filepath = `${__dirname}/../../uploads/${filePath}`
-    }).on('field', (name, value) => {
-      if (name === 'name') {
-        kid.name = value
-      } else if (name === 'userId') {
-        kid.userId = value
-      }
-    }).on('end', async () => {
-      const newKid = await kidsModel.create(kid.name, kid.image, kid.userId)
-      response.status(201).json({
-        status: 'Success',
-        data: { ...newKid },
-        message: 'New kid got created successfully'
+    form
+      .on('fileBegin', (name, file) => {
+        const filePath = `${file.originalFilename}`
+        kid.image = `${config.url}/${filePath}`
+        file.filepath = `${__dirname}/../../uploads/${filePath}`
       })
-    })
+      .on('field', (name, value) => {
+        if (name === 'name') {
+          kid.name = value
+        } else if (name === 'userId') {
+          kid.userId = value
+        }
+      })
+      .on('end', async () => {
+        const newKid = await kidsModel.create(kid.name, kid.image, kid.userId)
+        response.status(201).json({
+          status: 'Success',
+          data: { ...newKid },
+          message: 'New kid got created successfully'
+        })
+      })
   } catch (error) {
     next(error)
   }
