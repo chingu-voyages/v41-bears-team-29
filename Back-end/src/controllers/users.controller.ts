@@ -52,6 +52,7 @@ export const getUser = async (
       })
     }
   } catch (error) {
+    console.log(error)
     next(error)
   }
 }
@@ -104,7 +105,10 @@ export const userSession = async (
       })
       return
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
 }
 
 export const deleteUserSession = async (

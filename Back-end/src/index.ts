@@ -28,10 +28,12 @@ app.use(morgan('short'))
 // Secure headers to express app
 app.use(helmet())
 // Open cors for frontend
-app.use(cors({
-  origin: 'exp://192.168.8.142:19000',
-  credentials: true
-}))
+app.use(
+  cors({
+    origin: 'exp://192.168.8.142:19000',
+    credentials: true
+  })
+)
 app.use(express.static('uploads'))
 // Save user credentials in cookie
 app.use(sessionMiddleware)
