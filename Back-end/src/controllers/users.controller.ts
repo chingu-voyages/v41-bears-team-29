@@ -64,12 +64,16 @@ export const createUser = async (
 ): Promise<void> => {
   try {
     const { username, email, password } = request.body
+<<<<<<< HEAD
     const newUser = {
       username,
       email: email.toLowerCase(),
       image: `${config.url}/person.svg`,
       password
     }
+=======
+    const newUser = { username, email: email.toLowerCase(), image: `${config.url}/person.svg`, password }
+>>>>>>> 091f656ac6645a4bec181cb720204836573b3f6b
     const checkEmail = await usersModel.showByEmail(email.toLowerCase())
     if (checkEmail) {
       response.status(409).json({
