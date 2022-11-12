@@ -27,12 +27,12 @@ const clarifai = new Clarifai(
 );
 
 export default function CaptureScreen({ navigation }) {
-  const { AuthState, AuthDispatch } = useContext(AuthContext);
+  const { AuthState, AuthDispatch, photo, setPhoto } = useContext(AuthContext);
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [isCamera, setIsCamera] = useState(true);
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
   const [showCamera, setShowCamera] = useState(true);
-  // const [photo, setPhoto] = useState();
+
   let cameraRef = useRef();
 
   useEffect(() => {
@@ -62,8 +62,9 @@ export default function CaptureScreen({ navigation }) {
       exif: false,
     };
     let newPhoto = await cameraRef.current.takePictureAsync(options);
+    setPhoto(newPhoto);
     AuthDispatch({ type: "update_photo", payload: newPhoto });
-
+    console.log(photo);
     clarifai
       .predictByBytes(newPhoto.base64)
       .then((data) => {
@@ -106,9 +107,7 @@ export default function CaptureScreen({ navigation }) {
           <TouchableOpacity onPress={takePic}>
             <CameraBtn />
           </TouchableOpacity>
-          {/* <View style={globalStyles.profileIcon}> */}
-          {/* <ProfileCard user={currentUser} /> */}
-          {/* </View> */}
+
           <TouchableOpacity style={globalStyles.button} onPress={retake}>
             <Text>Take again</Text>
           </TouchableOpacity>
@@ -140,6 +139,8 @@ const styles = StyleSheet.create({
   cameraContainer: {
     flex: 3,
     marginHorizontal: 10,
+    borderRadius: 25,
+    overflow: "hidden",
   },
   camera: {
     borderWidth: 2,

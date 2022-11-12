@@ -38,7 +38,8 @@
       "infoPlist": {
         "NSPhotoLibraryUsageDescription": "Allow App to acces your photos",
         "NSPhotoLibraryAddUsageDescription": "Allow App to save photos"
-      }
+      },
+      "bundleIdentifier": "What.is.that"
     },
     "android": {
       "adaptiveIcon": {

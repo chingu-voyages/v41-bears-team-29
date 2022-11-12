@@ -60,12 +60,12 @@ export default function RegisterScreen({ navigation, display }) {
                 usersEndpoints
                   .createUser(values.username, values.email, values.password)
                   .then((data) => {
-                    console.log(data);
+                    console.log(data, "from register");
                     AuthDispatch({ type: "update_user", payload: data });
                     navigation.navigate("Login");
                   })
                   .catch((error) => {
-                    console.log(error);
+                    console.log(error, "from register");
                     setErrorMsg(error.response.data.message);
                     AuthDispatch({ type: "reset_all" });
                   });
@@ -128,25 +128,27 @@ export default function RegisterScreen({ navigation, display }) {
                     <TouchableOpacity
                       onPress={() => navigation.navigate("SignIn")}
                     >
-                      <Text>Sign in</Text>
+                      <Text style={globalStyles.buttonText}>Sign in</Text>
                     </TouchableOpacity>
                   </View>
                   <TouchableOpacity
                     style={globalStyles.button}
                     onPress={formikProps.handleSubmit}
                   >
-                    <Text>Create an account</Text>
+                    <Text style={globalStyles.buttonText}>
+                      Create an account
+                    </Text>
                   </TouchableOpacity>
                 </View>
               )}
             </Formik>
 
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={globalStyles.button}
               onPress={() => navigation.navigate("Login")}
             >
               <Text>Go to your profile</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>

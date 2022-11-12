@@ -49,7 +49,7 @@ export const globalStyles = StyleSheet.create({
   },
   button: {
     margin: 10,
-    borderRadius: 5,
+    borderRadius: 20,
     borderWidth: 5,
     borderColor: "#96CEB4",
     backgroundColor: "#FEF1E6",
@@ -57,6 +57,18 @@ export const globalStyles = StyleSheet.create({
     textAlign: "center",
   },
   buttonText: {
+    fontWeight: "bold",
+    fontSize: 20,
     color: "black",
+  },
+  buttonSpecial: {
+    margin: 10,
+    borderRadius: 5,
+    borderWidth: 5,
+    borderColor: "#E99497",
+    backgroundColor: "#FEF1E6",
+    padding: 15,
+    textAlign: "center",
+    width: 150,
   },
 });

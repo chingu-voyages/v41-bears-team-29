@@ -55,7 +55,7 @@ export default function SignInScreen({ navigation, display }) {
                 .catch((error) => {
                   AuthDispatch({ type: "reset_all" });
                   console.log(error, "from submit signin");
-                  setError(error.response.data.message);
+                  // setError(error.response.data.message);
                 });
               actions.resetForm();
             }}
@@ -97,18 +97,17 @@ export default function SignInScreen({ navigation, display }) {
                   style={globalStyles.button}
                   onPress={formikProps.handleSubmit}
                 >
-                  <Text>Sign in</Text>
+                  <Text style={globalStyles.buttonText}>Sign in</Text>
                 </TouchableOpacity>
               </View>
             )}
           </Formik>
-          <TouchableOpacity
-            style={globalStyles.button}
+          {/* <TouchableOpacity
+            style={globalStyles.buttonSpecial}
             onPress={() => navigation.navigate("ProfileAdmin")}
           >
             <Text>Go to your profile</Text>
-          </TouchableOpacity>
-          <StatusBar style="auto" />
+          </TouchableOpacity> */}
         </View>
       </TouchableWithoutFeedback>
     </ImageBackground>

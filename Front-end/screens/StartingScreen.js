@@ -29,13 +29,13 @@ const StartingScreen = ({ navigation }) => {
             style={globalStyles.button}
             onPress={() => navigation.navigate("Register")}
           >
-            <Text>Register</Text>
+            <Text style={globalStyles.buttonText}>Register</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={globalStyles.button}
             onPress={() => navigation.navigate("SignIn")}
           >
-            <Text>Sign in</Text>
+            <Text style={globalStyles.buttonText}>Sign in</Text>
           </TouchableOpacity>
         </View>
       </View>

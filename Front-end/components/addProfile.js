@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import React, { useState, useContext, useEffect } from "react";
 import { globalStyles } from "../styles/global";
 import { Formik } from "formik";
@@ -10,12 +17,16 @@ import * as ImagePicker from "expo-image-picker";
 const playersSchema = yup.object({
   name: yup.string().required().min(4),
 });
+const kids = new KidsEndpoints();
 
 export default function Addprofile() {
-  const { AuthState, AuthDispatch } = useContext(AuthContext);
-  const kids = new KidsEndpoints(AuthState.user.token);
-
-  const [selectedImage, setSelectedImage] = useState(null);
+  const {
+    AuthState,
+    AuthDispatch,
+    setNewPlayers,
+    selectedImage,
+    setSelectedImage,
+  } = useContext(AuthContext);
 
   let openImagePickerAsync = async () => {
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
@@ -24,28 +35,37 @@ export default function Addprofile() {
     }
     setSelectedImage({ localUri: pickerResult.uri });
   };
-  console.log(selectedImage);
 
   return (
     <Formik
       initialValues={{
         name: "",
         image: selectedImage,
-        userId: AuthState.user.token,
+        userId: AuthState.user.id,
       }}
       validationSchema={playersSchema}
       onSubmit={(values, actions) => {
-        kids
-          .createKid(values.name, values.image, values.userId)
-          .then((data) => {
-            console.log(data, "promise");
-            AuthDispatch({ type: "add_new_kid", payload: data });
-          })
-          .catch((error) => {
-            console.log("ERROR", error);
-            // setErrorMsg(error.response.data.message);
-            AuthDispatch({ type: "reset_all" });
-          });
+        setNewPlayers((prevPlayers) => {
+          return [
+            {
+              name: values.name,
+              image: values.image,
+              id: Math.random().toString(),
+            },
+            ...prevPlayers,
+          ];
+        });
+        // kids
+        //   .createKid(values.name, values.userId, values.image)
+        //   .then((data) => {
+        //     console.log(data, "createkid");
+        //     AuthDispatch({ type: "add_new_kid", payload: data });
+        //   })
+        //   .catch((error) => {
+        //     console.log("from createkid", error);
+        //     setErrorMsg(error.response.data.message);
+        //     AuthDispatch({ type: "reset_all" });
+        //   });
         actions.resetForm();
       }}
     >
@@ -59,16 +79,18 @@ export default function Addprofile() {
             value={formikProps.values.name}
           />
           <Text style={styles.formText}>Photo:</Text>
-          <Button
-            style={styles.addPhoto}
+          <TouchableOpacity
+            style={globalStyles.button}
             onPress={openImagePickerAsync}
-            title="+"
-          />
-          <Button
-            style={styles.btn}
+          >
+            <Text style={globalStyles.buttonText}>+</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={globalStyles.button}
             onPress={formikProps.handleSubmit}
-            title="ADD"
-          />
+          >
+            <Text style={globalStyles.buttonText}>ADD</Text>
+          </TouchableOpacity>
         </View>
       )}
     </Formik>
@@ -82,13 +104,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "50%",
-    borderColor: "blue",
-    borderWidth: 2,
   },
 
   formText: {
     fontSize: 25,
   },
-  addPhoto: {},
-  btn: {},
 });

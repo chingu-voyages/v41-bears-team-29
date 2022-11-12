@@ -47,20 +47,18 @@ export default function LoginScreen({ navigation }) {
             horizontal={true}
             data={AuthState.kids}
             renderItem={({ item }) => (
-              <TouchableOpacity
-                style={styles.profileContainer}
-                onPress={() => onPressProfileHandler(item)}
-              >
+              <TouchableOpacity onPress={() => onPressProfileHandler(item)}>
                 <Card item={item} />
               </TouchableOpacity>
             )}
           />
         </View>
-
-        <Button
-          title="go to ProfileAdmin"
+        <TouchableOpacity
+          style={globalStyles.buttonSpecial}
           onPress={() => navigation.navigate("ProfileAdmin")}
-        />
+        >
+          <Text>Go to Admin</Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -77,9 +75,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     flex: 2,
-  },
-
-  profileContainer: {
-    // margin: 10,
   },
 });

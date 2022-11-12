@@ -11,35 +11,35 @@ import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import ProfileCard from "../components/card";
 import React, { useState, useContext } from "react";
-import Card from "../components/card";
+import AnswerCard from "../components/answerCard";
 import GoBackBtn from "../components/goBackBtn";
 import { AuthContext } from "../context/auth";
 
 export default function ScoreScreen({ navigation }) {
-  const { AuthState,AuthDispatch } = useContext(AuthContext);
+  // const { AuthState, AuthDispatch } = useContext(AuthContext);
 
   const [score, setScore] = useState([
     {
       name: "sofa",
-      photo: require("../assets/img/sofa.jpg"),
+      image: require("../assets/img/sofa.jpg"),
       id: 1,
       type: "answer",
     },
     {
       name: "table",
-      photo: require("../assets/img/table.jpg"),
+      image: require("../assets/img/table.jpg"),
       id: 2,
       type: "answer",
     },
     {
       name: "chair",
-      photo: require("../assets/img/chair.jpg"),
+      image: require("../assets/img/chair.jpg"),
       id: 3,
       type: "answer",
     },
     {
       name: "cup",
-      photo: require("../assets/img/cup.jpg"),
+      image: require("../assets/img/cup.jpg"),
       id: 4,
       type: "answer",
     },
@@ -52,9 +52,6 @@ export default function ScoreScreen({ navigation }) {
           <TouchableOpacity onPress={() => navigation.navigate("Capture")}>
             <GoBackBtn />
           </TouchableOpacity>
-          <View style={globalStyles.profileIcon}>
-            {/* <ProfileCard user={currentUser} /> */}
-          </View>
           <Text style={globalStyles.headerTitle}>Score</Text>
           <Text style={globalStyles.headerTitle}>25</Text>
         </View>
@@ -63,13 +60,15 @@ export default function ScoreScreen({ navigation }) {
             keyExtractor={(item) => item.id}
             horizontal={true}
             data={score}
-            renderItem={({ item }) => <Card item={item} />}
+            renderItem={({ item }) => <AnswerCard item={item} />}
           />
         </View>
-        <Button
-          title="go to Capture"
-          onPress={() => navigation.navigate("Capture")}
-        />
+        <TouchableOpacity
+          style={globalStyles.buttonSpecial}
+          onPress={() => navigation.navigate("Login")}
+        >
+          <Text>Go to Login</Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -84,7 +83,5 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
-    // justifyContent: "space-between",
   },
 });

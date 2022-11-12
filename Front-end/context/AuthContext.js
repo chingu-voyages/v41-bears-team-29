@@ -1,4 +1,4 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import { defaultAuthContextState, AuthReducer, init } from "./AuthReducer";
 import UsersEndpoints from "../Api/Users";
 
@@ -12,6 +12,12 @@ function AuthContextProvider({ children }) {
     defaultAuthContextState,
     init
   );
+  ///////
+  const [photo, setPhoto] = useState();
+  const [newPlayers, setNewPlayers] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  ////////
 
   useEffect(() => {
     const controller = new AbortController();
@@ -31,7 +37,18 @@ function AuthContextProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ AuthState, AuthDispatch }}>
+    <AuthContext.Provider
+      value={{
+        AuthState,
+        AuthDispatch,
+        photo,
+        setPhoto,
+        newPlayers,
+        setNewPlayers,
+        selectedImage,
+        setSelectedImage,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

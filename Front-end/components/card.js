@@ -1,18 +1,15 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 export default function Card({ item }) {
   const { name, image } = item;
   console.log(item);
   return (
     <View style={styles.containerUser}>
-      <Image style={styles.profilePhoto} source={image} />
+      <Image style={styles.profilePhoto} source={{ uri: image }} />
+      {/* <Image
+        style={styles.profilePhoto}
+        source={require("../assets/img/profilePhoto2.jpg")}
+      /> */}
       <Text style={styles.profileName}>{name}</Text>
     </View>
   );

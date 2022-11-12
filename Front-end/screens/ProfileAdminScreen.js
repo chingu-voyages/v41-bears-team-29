@@ -19,18 +19,18 @@ import * as ImagePicker from "expo-image-picker";
 import { AuthContext } from "../context/AuthContext";
 
 export default function ProfileAdminScreen({ navigation }) {
-  const { AuthState, AuthDispatch } = useContext(AuthContext);
-  const [users, setUsers] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [newUser, setNewUser] = useState("");
-
-  let openImagePickerAsync = async () => {
-    let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    if (pickerResult.cancelled === true) {
-      return;
-    }
-    setSelectedImage({ localUri: pickerResult.uri });
-  };
+  const { AuthState, AuthDispatch, newPlayers, selectedImage } =
+    useContext(AuthContext);
+  // let openImagePickerAsync = async () => {
+  //   let pickerResult = await ImagePicker.launchImageLibraryAsync();
+  //   if (pickerResult.cancelled === true) {
+  //     return;
+  //   }
+  //   setSelectedImage({ localUri: pickerResult.uri });
+  // };
+  // console.log(AuthState.kids, "profileadmin");
+  console.log(newPlayers, "new player");
+  console.log(selectedImage, "selected image");
 
   const deleteUserHandler = (id) => {
     setUsers((prevUsers) => {
@@ -70,15 +70,20 @@ export default function ProfileAdminScreen({ navigation }) {
           <Text style={globalStyles.headerTitle}>Profiles</Text>
         </View>
         <Text style={styles.newPlayer}>New Player</Text>
-        <Addprofile
-          newUser={newUser}
-          openImagePickerAsync={openImagePickerAsync}
-        />
+        <Addprofile />
         <View style={globalStyles.userList}>
           <FlatList
             keyExtractor={(user) => user.id}
             horizontal={true}
-            data={AuthState.user.kids}
+            data={AuthState.kids}
+            renderItem={({ item }) => (
+              <Card item={item} deleteUserHandler={deleteUserHandler} />
+            )}
+          />
+          <FlatList
+            keyExtractor={(user) => user.id}
+            horizontal={true}
+            data={newPlayers}
             renderItem={({ item }) => (
               <Card item={item} deleteUserHandler={deleteUserHandler} />
             )}
