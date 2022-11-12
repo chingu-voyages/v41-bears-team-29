@@ -36,7 +36,6 @@ export default function SignInScreen({ navigation, display }) {
       </TouchableOpacity>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
-          <Text>Welcome to</Text>
           <Text style={globalStyles.appName}>What's that?!</Text>
           <Text>Please log in to start playing with this incredible game</Text>
           <Formik
@@ -51,11 +50,11 @@ export default function SignInScreen({ navigation, display }) {
                 .then((data) => {
                   AuthDispatch({ type: "update_user", payload: data });
                   navigation.navigate("Login");
-                  console.log(data);
+                  // console.log(data, "from submit signin");
                 })
                 .catch((error) => {
                   AuthDispatch({ type: "reset_all" });
-                  console.log(error);
+                  console.log(error, "from submit signin");
                   setError(error.response.data.message);
                 });
               actions.resetForm();
@@ -63,7 +62,6 @@ export default function SignInScreen({ navigation, display }) {
           >
             {(formikProps) => (
               <View>
-                <Text>{error}</Text>
                 <TextInput
                   style={globalStyles.input}
                   onChangeText={formikProps.handleChange("email")}
@@ -87,7 +85,7 @@ export default function SignInScreen({ navigation, display }) {
                 <Text style={globalStyles.errorText}>
                   {formikProps.touched.password && formikProps.errors.password}
                 </Text>
-                <View style={globalStyles.RegisterToSigninContainer}>
+                <View>
                   <Text>Don't have an account?</Text>
                   <TouchableOpacity
                     onPress={() => navigation.navigate("Register")}
@@ -95,14 +93,21 @@ export default function SignInScreen({ navigation, display }) {
                     <Text>Register</Text>
                   </TouchableOpacity>
                 </View>
-                <Button title="Sign in" onPress={formikProps.handleSubmit} />
+                <TouchableOpacity
+                  style={globalStyles.button}
+                  onPress={formikProps.handleSubmit}
+                >
+                  <Text>Sign in</Text>
+                </TouchableOpacity>
               </View>
             )}
           </Formik>
-          <Button
-            title="Go to your profile"
+          <TouchableOpacity
+            style={globalStyles.button}
             onPress={() => navigation.navigate("ProfileAdmin")}
-          />
+          >
+            <Text>Go to your profile</Text>
+          </TouchableOpacity>
           <StatusBar style="auto" />
         </View>
       </TouchableWithoutFeedback>
@@ -115,5 +120,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    gap: 15,
   },
 });

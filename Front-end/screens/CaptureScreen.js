@@ -62,14 +62,17 @@ export default function CaptureScreen({ navigation }) {
       exif: false,
     };
     let newPhoto = await cameraRef.current.takePictureAsync(options);
-    AuthDispatch({type: 'update_photo', payload: newPhoto})
+    AuthDispatch({ type: "update_photo", payload: newPhoto });
 
     clarifai
       .predictByBytes(newPhoto.base64)
       .then((data) => {
         console.log(data);
         // console.log(data.regions[0].data.concepts[0].name);
-        AuthDispatch({type: 'update_correct_answer', payload:data.regions[0].data.concepts[0].name })
+        AuthDispatch({
+          type: "update_correct_answer",
+          payload: data.regions[0].data.concepts[0].name,
+        });
         // setCorrectAnswer(data.regions[0].data.concepts[0].name);
       })
       .catch((error) => {
@@ -81,7 +84,7 @@ export default function CaptureScreen({ navigation }) {
   const retake = () => {
     setIsCamera(true);
     // setPhoto(undefined);
-    AuthDispatch({type: 'reset_photo'})
+    AuthDispatch({ type: "reset_photo" });
   };
 
   return (
@@ -90,7 +93,7 @@ export default function CaptureScreen({ navigation }) {
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
           <GoBackBtn />
         </TouchableOpacity>
-        <View styles={styles.cameraContainer}>
+        <View style={styles.cameraContainer}>
           {isCamera && <Camera style={styles.camera} ref={cameraRef}></Camera>}
           {!isCamera && (
             <Image
@@ -106,12 +109,15 @@ export default function CaptureScreen({ navigation }) {
           {/* <View style={globalStyles.profileIcon}> */}
           {/* <ProfileCard user={currentUser} /> */}
           {/* </View> */}
-
-          <Button title="retake" onPress={retake} />
-          <Button
-            title="go to Choosing"
+          <TouchableOpacity style={globalStyles.button} onPress={retake}>
+            <Text>Take again</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={globalStyles.button}
             onPress={() => navigation.navigate("Choosing")}
-          />
+          >
+            <Text style={globalStyles.buttonText}>Go to Choosing</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
@@ -128,18 +134,16 @@ const styles = StyleSheet.create({
   },
   rightColumn: {
     flex: 1,
-    height: "100%",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    alignItems: "center",
   },
   cameraContainer: {
-    flex: 5,
-    borderWidth: 2,
-    borderColor: "blue",
+    flex: 3,
+    marginHorizontal: 10,
   },
   camera: {
     borderWidth: 2,
-    width: 400,
-    height: "100%",
+    flex: 1,
   },
   preview: {
     width: 300,

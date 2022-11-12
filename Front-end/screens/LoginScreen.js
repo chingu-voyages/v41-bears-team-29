@@ -38,6 +38,7 @@ export default function LoginScreen({ navigation }) {
           </TouchableOpacity>
           <Text style={globalStyles.appName}>What's that?!</Text>
         </View>
+
         <Text style={globalStyles.headerTitle}>Who is ready to play?</Text>
         {/* <Text style={globalStyles.headerTitle}>{AuthState.user.username}</Text> */}
         <View style={globalStyles.userList}>

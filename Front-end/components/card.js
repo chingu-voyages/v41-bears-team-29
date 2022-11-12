@@ -9,10 +9,9 @@ import {
 
 export default function Card({ item }) {
   const { name, image } = item;
+  console.log(item);
   return (
-    <View
-      style={type === "player" ? styles.containerUser : styles.containerAnswer}
-    >
+    <View style={styles.containerUser}>
       <Image style={styles.profilePhoto} source={image} />
       <Text style={styles.profileName}>{name}</Text>
     </View>

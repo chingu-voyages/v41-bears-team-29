@@ -9,12 +9,13 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
 
 const StartingScreen = ({ navigation }) => {
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
-      <View>
+      <View style={styles.container}>
         <Image
           style={styles.wellcomePic}
           source={require("../assets/img/wellcome.jpg")}
@@ -24,19 +25,18 @@ const StartingScreen = ({ navigation }) => {
           <Text>Explore things around you</Text>
         </View>
         <View style={styles.body}>
-          <Button
-            style={styles.button}
+          <TouchableOpacity
+            style={globalStyles.button}
             onPress={() => navigation.navigate("Register")}
-            title="Register"
-          />
-          <Button
-            style={styles.button}
+          >
+            <Text>Register</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={globalStyles.button}
             onPress={() => navigation.navigate("SignIn")}
-            title="Sign in"
-          />
-          <View>
-            <Button style={styles.button} title="Continue with Google" />
-          </View>
+          >
+            <Text>Sign in</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ImageBackground>
@@ -56,17 +56,11 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   body: {
-    gap: 20,
+    flex: 1,
     alignItems: "center",
   },
   wellcomePic: {
-    height: "30%",
-  },
-  button: {
-    padding: 5,
-    margin: 10,
-    backgroundColor: "red",
-    borderRadius: 20,
+    height: 200,
   },
 });
 

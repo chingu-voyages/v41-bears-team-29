@@ -44,7 +44,6 @@ export default function RegisterScreen({ navigation, display }) {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView>
           <View style={styles.container}>
-            <Text>Welcome to</Text>
             <Text style={globalStyles.appName}>What's that?!</Text>
             <Text>
               Please register to start playing with this incredible game
@@ -132,18 +131,22 @@ export default function RegisterScreen({ navigation, display }) {
                       <Text>Sign in</Text>
                     </TouchableOpacity>
                   </View>
-                  <Button
-                    title="Create an account"
+                  <TouchableOpacity
+                    style={globalStyles.button}
                     onPress={formikProps.handleSubmit}
-                  />
+                  >
+                    <Text>Create an account</Text>
+                  </TouchableOpacity>
                 </View>
               )}
             </Formik>
 
-            <Button
-              title="Go to your profile"
+            <TouchableOpacity
+              style={globalStyles.button}
               onPress={() => navigation.navigate("Login")}
-            />
+            >
+              <Text>Go to your profile</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>

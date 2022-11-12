@@ -33,7 +33,7 @@ export const globalStyles = StyleSheet.create({
     overflow: "hidden",
   },
   input: {
-    borderColor: "blue",
+    borderColor: "#96CEB4",
     padding: 8,
     borderRadius: 10,
     fontSize: 10,
@@ -46,5 +46,17 @@ export const globalStyles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 6,
     textAlign: "center",
+  },
+  button: {
+    margin: 10,
+    borderRadius: 5,
+    borderWidth: 5,
+    borderColor: "#96CEB4",
+    backgroundColor: "#FEF1E6",
+    padding: 15,
+    textAlign: "center",
+  },
+  buttonText: {
+    color: "black",
   },
 });
