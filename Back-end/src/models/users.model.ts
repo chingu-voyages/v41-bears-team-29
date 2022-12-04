@@ -41,11 +41,7 @@ export class UsersModel {
   async showByEmail(email: string): Promise<User | null> {
     try {
       const connect = await database.connect()
-<<<<<<< HEAD
-      const sql = `SELECT id, email, username, image
-=======
       const sql = `SELECT id, username, email, image
->>>>>>> 091f656ac6645a4bec181cb720204836573b3f6b
                    FROM users
                    WHERE email = $1`
       const results = await connect.query(sql, [email])
