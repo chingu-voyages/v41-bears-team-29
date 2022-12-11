@@ -1,12 +1,12 @@
-import axios from 'axios'
+import axios from "axios";
 
 export default class UsersEndpoints {
   constructor() {
     this.config = {
-      headers: { 'Content-Type': 'application/json' },
+      headers: { "Content-Type": "application/json" },
       withCredentials: true,
-      signal: null
-    }
+      signal: null,
+    };
   }
   /** Create new user
    * @param {string} username the new username
@@ -16,11 +16,11 @@ export default class UsersEndpoints {
    */
   async createUser(username, email, password) {
     const response = await axios.post(
-      `http://10.0.2.2:4000/api/users`,
+      `http://192.168.0.215:4000/api/users`,
       { username, email, password },
       this.config
-    )
-    return response.data.data
+    );
+    return response.data.data;
   }
 
   /** Authenticate user
@@ -30,29 +30,29 @@ export default class UsersEndpoints {
    */
   async authUser(email, password) {
     const response = await axios.post(
-      `http://10.0.2.2:4000/api/users/auth`,
+      `http://192.168.0.215:4000/api/users/auth`,
       { email, password },
       this.config
-    )
-    return response.data.data
+    );
+    return response.data.data;
   }
   /** Keep user logged in */
   async getUser(controller) {
-    this.config.signal = controller.signal
+    this.config.signal = controller.signal;
     const response = await axios.get(
-      `http://10.0.2.2:4000/api/users/auth/session`,
+      `http://192.168.0.215:4000/api/users/auth/session`,
       this.config
-    )
-    return response.data.data
+    );
+    return response.data.data;
   }
 
   /** To logout user and delete his session */
   async logoutUser(controller) {
-    this.config.signal = controller.signal
+    this.config.signal = controller.signal;
     const response = await axios.get(
-      `http://10.0.2.2:4000/api/users/auth/logout`,
+      `http://192.168.0.215:4000/api/users/auth/logout`,
       this.config
-    )
-    return response.data
+    );
+    return response.data;
   }
 }

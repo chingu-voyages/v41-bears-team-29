@@ -1,57 +1,60 @@
-import axios from 'axios'
+import axios from "axios";
 
 export default class KidsEndpoints {
   constructor(token) {
     this.config = {
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       withCredentials: true,
-      signal: null
-    }
+      signal: null,
+    };
   }
 
   async createKid(name, userId, image) {
-    this.config.headers['Content-Type'] = 'multipart/form-data'
+    this.config.headers["Content-Type"] = "multipart/form-data";
     const response = await axios.post(
-      'http://10.0.2.2:4000/api/kids',
+      "http://192.168.0.215:4000/api/kids",
       { name, userId, image },
       this.config
-    )
-    return response.data.data
+    );
+    return response.data.data;
   }
 
-  async getUserKids(controller, userId){
-    this.config.signal = controller.signal
+  async getUserKids(controller, userId) {
+    this.config.signal = controller.signal;
     const response = await axios.post(
-      `http://10.0.2.2:4000/api/kids/user/${userId}`,
+      `http://192.168.0.215:4000/api/kids/user/${userId}`,
       this.config
-    )
-    return response.data.data
+    );
+    return response.data.data;
   }
 
-  async getKid(controller, kidId){
-    this.config.signal = controller.signal
+  async getKid(controller, kidId) {
+    this.config.signal = controller.signal;
     const response = await axios.post(
-      `http://10.0.2.2:4000/api/kids/user/${kidId}`,
+      `http://192.168.0.215:4000/api/kids/user/${kidId}`,
       this.config
-    )
-    return response.data.data
+    );
+    return response.data.data;
   }
 
-  async updateKid(kidId, name, image){
-    this.config.headers['Content-Type'] = 'multipart/form-data'
+  async updateKid(kidId, name, image) {
+    this.config.headers["Content-Type"] = "multipart/form-data";
     const response = await axios.put(
-      `http://10.0.2.2:4000/api/kids/user/${kidId}`,
-      {name, image},
+      `http://192.168.0.215:4000/api/kids/user/${kidId}`,
+      { name, image },
       this.config
-    )
-    return response.data.data
+    );
+    return response.data.data;
   }
 
-  async deleteKid(kidId){
+  async deleteKid(kidId) {
     const response = await axios.delete(
-      `http://10.0.2.2:4000/api/kids/user/${kidId}`,
+      `http://192.168.0.215:4000/api/kids/user/${kidId}`,
       this.config
-    )
-    return response.data
+    );
+    return response.data;
   }
 }

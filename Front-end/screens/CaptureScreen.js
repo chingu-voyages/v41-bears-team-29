@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
@@ -11,8 +10,9 @@ import {
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
 import GoBackBtn from "../components/goBackBtn";
+import GoForwardBtn from "../components/goForwardBtn";
+import RetakeBtn from "../components/retakeBtn";
 import CameraBtn from "../components/cameraBtn";
-import ProfileCard from "../components/card";
 import { globalStyles } from "../styles/global";
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -31,8 +31,6 @@ export default function CaptureScreen({ navigation }) {
   const [hasCameraPermission, setHasCameraPermission] = useState();
   const [isCamera, setIsCamera] = useState(true);
   const [hasMediaLibraryPermission, setHasMediaLibraryPermission] = useState();
-  const [showCamera, setShowCamera] = useState(true);
-
   let cameraRef = useRef();
 
   useEffect(() => {
@@ -43,6 +41,7 @@ export default function CaptureScreen({ navigation }) {
       setHasCameraPermission(cameraPermission.status === "granted");
       setHasMediaLibraryPermission(mediaLibraryPermission.status === "granted");
     })();
+    setIsCamera(true);
   }, []);
 
   if (hasCameraPermission === undefined) {
@@ -64,17 +63,16 @@ export default function CaptureScreen({ navigation }) {
     let newPhoto = await cameraRef.current.takePictureAsync(options);
     setPhoto(newPhoto);
     AuthDispatch({ type: "update_photo", payload: newPhoto });
-    console.log(photo);
+
     clarifai
       .predictByBytes(newPhoto.base64)
       .then((data) => {
         console.log(data);
-        // console.log(data.regions[0].data.concepts[0].name);
+
         AuthDispatch({
           type: "update_correct_answer",
           payload: data.regions[0].data.concepts[0].name,
         });
-        // setCorrectAnswer(data.regions[0].data.concepts[0].name);
       })
       .catch((error) => {
         console.log(error);
@@ -84,7 +82,6 @@ export default function CaptureScreen({ navigation }) {
 
   const retake = () => {
     setIsCamera(true);
-    // setPhoto(undefined);
     AuthDispatch({ type: "reset_photo" });
   };
 
@@ -104,18 +101,18 @@ export default function CaptureScreen({ navigation }) {
           )}
         </View>
         <View style={styles.rightColumn}>
-          <TouchableOpacity onPress={takePic}>
-            <CameraBtn />
-          </TouchableOpacity>
+          {isCamera ? (
+            <TouchableOpacity onPress={takePic}>
+              <CameraBtn />
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity onPress={retake}>
+              <RetakeBtn />
+            </TouchableOpacity>
+          )}
 
-          <TouchableOpacity style={globalStyles.button} onPress={retake}>
-            <Text>Take again</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={globalStyles.button}
-            onPress={() => navigation.navigate("Choosing")}
-          >
-            <Text style={globalStyles.buttonText}>Go to Choosing</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Choosing")}>
+            <GoForwardBtn />
           </TouchableOpacity>
         </View>
       </View>

@@ -16,13 +16,9 @@ const StartingScreen = ({ navigation }) => {
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
-        <Image
-          style={styles.wellcomePic}
-          source={require("../assets/img/wellcome.jpg")}
-        />
         <View style={styles.header}>
           <Text style={globalStyles.appName}>What's that?!</Text>
-          <Text>Explore things around you</Text>
+          <Text style={globalStyles.text}>Explore things around you</Text>
         </View>
         <View style={styles.body}>
           <TouchableOpacity
@@ -47,7 +43,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
-    padding: 20,
+    padding: 10,
     alignItems: "center",
     gap: 15,
   },
@@ -57,6 +53,7 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 1,
+    flexDirection: "row",
     alignItems: "center",
   },
   wellcomePic: {

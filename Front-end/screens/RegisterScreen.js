@@ -44,8 +44,8 @@ export default function RegisterScreen({ navigation, display }) {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView>
           <View style={styles.container}>
-            <Text style={globalStyles.appName}>What's that?!</Text>
-            <Text>
+            {/* <Text style={globalStyles.appName}>What's that?!</Text> */}
+            <Text style={globalStyles.text}>
               Please register to start playing with this incredible game
             </Text>
             <Formik
@@ -60,7 +60,7 @@ export default function RegisterScreen({ navigation, display }) {
                 usersEndpoints
                   .createUser(values.username, values.email, values.password)
                   .then((data) => {
-                    console.log(data, "from register");
+                    // console.log(data, "from register");
                     AuthDispatch({ type: "update_user", payload: data });
                     navigation.navigate("Login");
                   })
@@ -124,7 +124,7 @@ export default function RegisterScreen({ navigation, display }) {
                       formikProps.errors.confirmPassword}
                   </Text>
                   <View style={globalStyles.RegisterToSigninContainer}>
-                    <Text>Have an account?</Text>
+                    <Text style={globalStyles.text}>Have an account?</Text>
                     <TouchableOpacity
                       onPress={() => navigation.navigate("SignIn")}
                     >
@@ -142,13 +142,6 @@ export default function RegisterScreen({ navigation, display }) {
                 </View>
               )}
             </Formik>
-
-            {/* <TouchableOpacity
-              style={globalStyles.button}
-              onPress={() => navigation.navigate("Login")}
-            >
-              <Text>Go to your profile</Text>
-            </TouchableOpacity> */}
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>

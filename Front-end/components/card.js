@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   profilePhoto: {
-    width: 160,
-    height: 180,
+    width: "100%",
+    height: "100%",
     borderRadius: 10,
   },
   profileName: {

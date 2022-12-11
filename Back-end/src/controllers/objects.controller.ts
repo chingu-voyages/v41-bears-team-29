@@ -100,24 +100,27 @@ export const createObject = async (
         return
       }
     })
-    form.on('fileBegin', (name, file) => {
-      const filePath = `${file.originalFilename}`
-      object.image = `${config.url}/${filePath}`
-      file.filepath = `${__dirname}/../../uploads/${filePath}`
-    }).on('field', (name, value) => {
-      if (name === 'name') {
-        object.name = value
-      } else if (name === 'kidId') {
-        object.kidId = value
-      }
-    }).on('end', async () => {
-      const newObject = await objectsModel.create(object.name, object.image, object.kidId)
-      response.status(201).json({
-        status: 'Success',
-        data: { ...newObject },
-        message: 'Object got created successfully'
+    form
+      .on('fileBegin', (name, file) => {
+        const filePath = `${file.originalFilename}`
+        object.image = `${config.url}/${filePath}`
+        file.filepath = `${__dirname}/../../uploads/${filePath}`
       })
-    })
+      .on('field', (name, value) => {
+        if (name === 'name') {
+          object.name = value
+        } else if (name === 'kidId') {
+          object.kidId = value
+        }
+      })
+      .on('end', async () => {
+        const newObject = await objectsModel.create(object.name, object.image, object.kidId)
+        response.status(201).json({
+          status: 'Success',
+          data: { ...newObject },
+          message: 'Object got created successfully'
+        })
+      })
   } catch (error) {
     next(error)
   }

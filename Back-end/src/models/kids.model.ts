@@ -66,9 +66,12 @@ export class KidsModel {
   async update(id: string, name: string, image: string): Promise<Kid> {
     try {
       const connect = await database.connect()
-      const select = await connect.query(`SELECT *
+      const select = await connect.query(
+        `SELECT *
                                           FROM kids
-                                          WHERE id = $1`, [id])
+                                          WHERE id = $1`,
+        [id]
+      )
 
       const sql = `UPDATE kids
                    SET name=$1,

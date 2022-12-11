@@ -2,7 +2,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   ImageBackground,
   TouchableOpacity,
   SafeAreaView,
@@ -11,7 +10,7 @@ import {
 } from "react-native";
 import bgImage from "../assets/img/bg40.jpg";
 import GoBackBtn from "../components/goBackBtn";
-import ProfileCard from "../components/card";
+import RetakeBtn from "../components/retakeBtn";
 import { globalStyles } from "../styles/global";
 import React, { useContext, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
@@ -58,36 +57,30 @@ export default function QuizScreen({ navigation }) {
               />
             )}
           </SafeAreaView>
+          <TouchableOpacity onPress={() => navigation.navigate("Capture")}>
+            <RetakeBtn />
+          </TouchableOpacity>
         </View>
-        <View style={styles.answerContainer}>
-          {/* <Button title={AuthState.correctAnswer} /> */}
-          <TouchableOpacity
-            style={globalStyles.button}
-            onPress={() => answerHandle("Correct")}
-          >
-            <Text style={globalStyles.buttonText}>Chair</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={globalStyles.button}
-            onPress={() => answerHandle("Try again")}
-          >
-            <Text style={globalStyles.buttonText}>Table</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={globalStyles.button}
-            onPress={() => answerHandle("Try again")}
-          >
-            <Text style={globalStyles.buttonText}>Tree</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={globalStyles.buttonSpecial}
-            onPress={() => navigation.navigate("Score")}
-          >
-            <Text>Go to Score</Text>
-          </TouchableOpacity>
-          {/* <Button title="see pictures" onPress={openImagePickerAsync} /> */}
-        </View>
+      </View>
+      <View style={styles.answerContainer}>
+        <TouchableOpacity
+          style={globalStyles.button}
+          onPress={() => answerHandle("Correct")}
+        >
+          <Text style={globalStyles.buttonText}>{AuthState.correctAnswer}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={globalStyles.button}
+          onPress={() => answerHandle("Try again")}
+        >
+          <Text style={globalStyles.buttonText}>Table</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={globalStyles.button}
+          onPress={() => answerHandle("Try again")}
+        >
+          <Text style={globalStyles.buttonText}>Tree</Text>
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -100,8 +93,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   photoContainer: {
-    margin: 10,
-    borderWidth: 2,
+    borderWidth: 5,
+    borderColor: "#BEAEE2",
     flex: 1,
     borderRadius: 25,
     overflow: "hidden",
@@ -119,9 +112,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
   },
   preview: {
-    alignSelf: "stretch",
     flex: 1,
-
     width: "100%",
   },
 });

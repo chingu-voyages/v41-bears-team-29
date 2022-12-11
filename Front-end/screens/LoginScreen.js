@@ -11,7 +11,7 @@ import Card from "../components/card";
 import bgImage from "../assets/img/bg40.jpg";
 import { globalStyles } from "../styles/global";
 import React, { useState, useContext, useEffect } from "react";
-import MenuBtn from "../components/menuBtn";
+import AdminBtn from "../components/adminBtn";
 import { AuthContext } from "../context/AuthContext";
 import Clarifai from "../Api/Clarifai";
 
@@ -33,32 +33,29 @@ export default function LoginScreen({ navigation }) {
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity>
-            <MenuBtn />
-          </TouchableOpacity>
-          <Text style={globalStyles.appName}>What's that?!</Text>
+          <Text style={globalStyles.appNameHeader}>What's that?!</Text>
         </View>
+        <View style={styles.body}>
+          <Text style={globalStyles.headerTitle}>Who is ready to play?</Text>
 
-        <Text style={globalStyles.headerTitle}>Who is ready to play?</Text>
-        {/* <Text style={globalStyles.headerTitle}>{AuthState.user.username}</Text> */}
-        <View style={globalStyles.userList}>
-          <FlatList
-            keyExtractor={(user) => user.id}
-            horizontal={true}
-            data={AuthState.kids}
-            renderItem={({ item }) => (
-              <TouchableOpacity onPress={() => onPressProfileHandler(item)}>
-                <Card item={item} />
-              </TouchableOpacity>
-            )}
-          />
+          <View style={globalStyles.userList}>
+            <FlatList
+              keyExtractor={(user) => user.id}
+              horizontal={true}
+              data={AuthState.kids}
+              renderItem={({ item }) => (
+                <TouchableOpacity onPress={() => onPressProfileHandler(item)}>
+                  <Card item={item} />
+                </TouchableOpacity>
+              )}
+            />
+            <TouchableOpacity
+              onPress={() => navigation.navigate("ProfileAdmin")}
+            >
+              <AdminBtn />
+            </TouchableOpacity>
+          </View>
         </View>
-        <TouchableOpacity
-          style={globalStyles.buttonSpecial}
-          onPress={() => navigation.navigate("ProfileAdmin")}
-        >
-          <Text>Go to Admin</Text>
-        </TouchableOpacity>
       </View>
     </ImageBackground>
   );
@@ -74,6 +71,9 @@ const styles = StyleSheet.create({
   header: {
     alignItems: "center",
     flexDirection: "row",
+    flex: 1,
+  },
+  body: {
     flex: 2,
   },
 });

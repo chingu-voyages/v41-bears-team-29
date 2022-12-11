@@ -15,50 +15,17 @@ import { globalStyles } from "../styles/global";
 import React, { useState, useContext } from "react";
 import Addprofile from "../components/addProfile";
 import GoBackBtn from "../components/goBackBtn";
-import * as ImagePicker from "expo-image-picker";
 import { AuthContext } from "../context/AuthContext";
 
 export default function ProfileAdminScreen({ navigation }) {
   const { AuthState, AuthDispatch, newPlayers, selectedImage } =
     useContext(AuthContext);
-  // let openImagePickerAsync = async () => {
-  //   let pickerResult = await ImagePicker.launchImageLibraryAsync();
-  //   if (pickerResult.cancelled === true) {
-  //     return;
-  //   }
-  //   setSelectedImage({ localUri: pickerResult.uri });
-  // };
-  // console.log(AuthState.kids, "profileadmin");
-  console.log(newPlayers, "new player");
-  console.log(selectedImage, "selected image");
 
   const deleteUserHandler = (id) => {
     setUsers((prevUsers) => {
       return prevUsers.filter((user) => user.id !== id);
     });
   };
-  // const changeHandler = (val) => {
-  //   setNewUser(val);
-  // };
-  // const submitHandle = (newUser) => {
-  //   if (newUser.length >= 3) {
-  //     AuthDispatch({ type: "add_new_kid" });
-  //     // setUsers((prevUsers) => {
-  //     //   return [
-  //     //     {
-  //     //       name: newUser,
-  //     //       photo: { uri: selectedImage.localUri },
-  //     //       id: Math.random().toString(),
-  //     //     },
-  //     //     ...prevUsers,
-  //     //   ];
-  //     // });
-  //   } else {
-  //     Alert.alert("OOPS!", "New name most be over 3 chars long", [
-  //       { text: "Understood", onPress: () => console.log("alert closed") },
-  //     ]);
-  //   }
-  // };
 
   return (
     <ImageBackground source={bgImage} style={globalStyles.bgContainer}>
@@ -67,9 +34,8 @@ export default function ProfileAdminScreen({ navigation }) {
           <TouchableOpacity onPress={() => navigation.navigate("Login")}>
             <GoBackBtn />
           </TouchableOpacity>
-          <Text style={globalStyles.headerTitle}>Profiles</Text>
+          <Text style={globalStyles.headerTitle}>Players</Text>
         </View>
-        <Text style={styles.newPlayer}>New Player</Text>
         <Addprofile />
         <View style={globalStyles.userList}>
           <FlatList
@@ -115,9 +81,5 @@ const styles = StyleSheet.create({
   },
   profilesContainer: {
     flexDirection: "row",
-  },
-
-  newPlayer: {
-    fontSize: 24,
   },
 });

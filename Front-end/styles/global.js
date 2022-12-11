@@ -6,9 +6,14 @@ export const globalStyles = StyleSheet.create({
   headerTitle: {
     fontSize: 40,
     fontFamily: "FuzzyBubbles-Bold",
+    textAlign: "center",
   },
   appName: {
     fontSize: 80,
+    fontFamily: "Gloria-regular",
+  },
+  appNameHeader: {
+    fontSize: 60,
     fontFamily: "Gloria-regular",
   },
   pageContainer: {
@@ -57,9 +62,9 @@ export const globalStyles = StyleSheet.create({
     textAlign: "center",
   },
   buttonText: {
-    fontWeight: "bold",
     fontSize: 20,
     color: "black",
+    fontFamily: "FuzzyBubbles-Bold",
   },
   buttonSpecial: {
     margin: 10,
@@ -67,8 +72,13 @@ export const globalStyles = StyleSheet.create({
     borderWidth: 5,
     borderColor: "#E99497",
     backgroundColor: "#FEF1E6",
-    padding: 15,
+    padding: 5,
     textAlign: "center",
     width: 150,
+    height: 40,
+  },
+  text: {
+    fontFamily: "Schoolbell-regular",
+    fontSize: 18,
   },
 });
