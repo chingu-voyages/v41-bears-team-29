@@ -7,7 +7,9 @@ recognized by the photo thanks to AI one of the options will be the correct answ
 
 Video Demo
 
-https://user-images.githubusercontent.com/60812452/206906722-de702cb2-6256-428b-9056-dfde1f6e43f5.mp4
+https://user-images.githubusercontent.com/60812452/206906965-79825251-bc67-47b5-87c1-77da723a7ffe.mp4
+
+
 
 
 
